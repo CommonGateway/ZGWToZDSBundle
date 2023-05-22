@@ -6,7 +6,7 @@
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 
-namespace CommonGateway\PetStoreBundle;
+namespace CommonGateway\ZGWToZDSBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
