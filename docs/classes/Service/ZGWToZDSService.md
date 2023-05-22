@@ -1,32 +1,19 @@
-# CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService  
-
-
-
-
-
-
+# CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService
 
 ## Methods
 
 | Name | Description |
 |------|-------------|
-|[__construct](#zgwtozdsservice__construct)||
+|[\_\_construct](#zgwtozdsservice__construct)||
 |[zgwToZdsHandler](#zgwtozdsservicezgwtozdshandler)|An example handler that is triggered by an action.|
 
-
-
-
-### ZGWToZDSService::__construct  
+### ZGWToZDSService::\_\_construct
 
 **Description**
 
 ```php
  __construct (void)
 ```
-
- 
-
- 
 
 **Parameters**
 
@@ -36,11 +23,9 @@
 
 `void`
 
-
 <hr />
 
-
-### ZGWToZDSService::zgwToZdsHandler  
+### ZGWToZDSService::zgwToZdsHandler
 
 **Description**
 
@@ -48,16 +33,14 @@
 public zgwToZdsHandler (array $data, array $configuration)
 ```
 
-An example handler that is triggered by an action. 
-
- 
+An example handler that is triggered by an action.
 
 **Parameters**
 
-* `(array) $data`
-: The data array  
-* `(array) $configuration`
-: The configuration array  
+*   `(array) $data`
+    : The data array
+*   `(array) $configuration`
+    : The configuration array
 
 **Return Values**
 
@@ -65,6 +48,4 @@ An example handler that is triggered by an action.
 
 > A handler must ALWAYS return an array
 
-
 <hr />
-
