@@ -1,0 +1,10 @@
+{
+  "title": "Du02ToZgwZaak",
+  "$id": "https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json",
+  "$schema": "",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "identificatie": "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:zaak.ZKN:identificatie"
+  }
+}

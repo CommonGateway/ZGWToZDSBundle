@@ -72,5 +72,10 @@ class ZGWToZDSService
 
     }//end zgwToZdsHandler()
 
+    public function zgwToZdsDi02Handler(array $data, array $configuration): array
+    {
+
+    }
+
 
 }//end class
