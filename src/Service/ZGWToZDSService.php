@@ -36,6 +36,27 @@ class ZGWToZDSService
      */
     private LoggerInterface $logger;
 
+    /**
+     * The mapping service.
+     *
+     * @var MappingService  $mappingService
+     */
+    private MappingService $mappingService;
+
+    /**
+     * The Resource service.
+     *
+     * @var GatewayResourceService $resourceService
+     */
+    private GatewayResourceService $resourceService;
+
+    /**
+     * The call service.
+     *
+     * @var CallService $callService
+     */
+    private CallService $callService;
+
 
     /**
      * @param EntityManagerInterface $entityManager The Entity Manager.
@@ -43,12 +64,17 @@ class ZGWToZDSService
      */
     public function __construct(
         EntityManagerInterface $entityManager,
-        LoggerInterface $pluginLogger
+        LoggerInterface $pluginLogger,
+        MappingService $mappingService,
+        GatewayResourceService $resourceService,
+        CallService $callService
     ) {
-        $this->entityManager = $entityManager;
-        $this->logger        = $pluginLogger;
-        $this->configuration = [];
-        $this->data          = [];
+        $this->entityManager   = $entityManager;
+        $this->logger          = $pluginLogger;
+        $this->configuration   = [];
+        $this->data            = [];
+        $this->mappingService  = $mappingService;
+        $this->resourceService = $resourceService;
 
     }//end __construct()
 
@@ -74,7 +100,30 @@ class ZGWToZDSService
 
     public function zgwToZdsDi02Handler(array $data, array $configuration): array
     {
+        $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json');
+        $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json');
+        $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json');
 
+        $zaak = $this->entityManager->getRepository('App:ObjectEntity')->find($data['_id']);
+
+        $zaakArray = $zaak->toArray();
+
+        $di02Message = $this->mappingService->map($zaakArray, $toMapping);
+
+        $encoder = new XmlEncoder();
+        $message = $encoder->encode($di02Message, 'xml');
+
+        $response = $this->callService->call($message, $source, 'POST');
+        $result = $this->callService->decode($response, $source);
+
+        $zaakArray = $this->mappingService->map($result, $fromMapping);
+
+        $zaak->hydrate($zaakArray);
+
+        $this->entityManager->persist($zaak);
+        $this->entityManager->flush();
+
+        return $data;
     }
 
 
