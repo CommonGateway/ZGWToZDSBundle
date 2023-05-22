@@ -130,7 +130,7 @@ class ZGWToZDSService
 
         return $data;
 
-    }//end zgwToZdsDi02Handler()
+    }//end zgwToZdsIdentificationHandler()
 
 
 }//end class
