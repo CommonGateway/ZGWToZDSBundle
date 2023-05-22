@@ -10,9 +10,9 @@
 
 | Name | Description |
 |------|-------------|
-|[\_\_construct](#zgwtozdsservice__construct)||
-|[zgwToZdsDi02Handler](#zgwtozdsservicezgwtozdsdi02handler)||
+|[__construct](#zgwtozdsservice__construct)||
 |[zgwToZdsHandler](#zgwtozdsservicezgwtozdshandler)|An example handler that is triggered by an action.|
+|[zgwToZdsIdentificationHandler](#zgwtozdsservicezgwtozdsidentificationhandler)||
 
 
 
@@ -40,25 +40,6 @@
 
 <hr />
 
-### ZGWToZDSService::zgwToZdsDi02Handler
-
-**Description**
-
-```php
- zgwToZdsDi02Handler (void)
-```
-
-**Parameters**
-
-`This function has no parameters.`
-
-**Return Values**
-
-`void`
-
-<hr />
-
-### ZGWToZDSService::zgwToZdsHandler
 
 ### ZGWToZDSService::zgwToZdsHandler  
 
@@ -84,6 +65,30 @@ An example handler that is triggered by an action.
 `array`
 
 > A handler must ALWAYS return an array
+
+
+<hr />
+
+
+### ZGWToZDSService::zgwToZdsIdentificationHandler  
+
+**Description**
+
+```php
+ zgwToZdsIdentificationHandler (void)
+```
+
+ 
+
+ 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`void`
 
 
 <hr />
