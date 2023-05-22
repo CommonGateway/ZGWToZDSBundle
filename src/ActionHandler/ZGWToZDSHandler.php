@@ -9,26 +9,26 @@
 namespace CommonGateway\PetStoreBundle\ActionHandler;
 
 use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
-use CommonGateway\PetStoreBundle\Service\PetStoreService;
+use CommonGateway\PetStoreBundle\Service\ZGWToZDSService;
 
 
-class PetStoreHandler implements ActionHandlerInterface
+class ZGWToZDSHandler implements ActionHandlerInterface
 {
 
     /**
      * The pet store service used by the handler
      *
-     * @var PetStoreService
+     * @var ZGWToZDSService
      */
-    private PetStoreService $petStoreService;
+    private ZGWToZDSService $petStoreService;
 
 
     /**
      * The constructor
      *
-     * @param PetStoreService $petStoreService The pet store service
+     * @param ZGWToZDSService $petStoreService The pet store service
      */
-    public function __construct(PetStoreService $petStoreService)
+    public function __construct(ZGWToZDSService $petStoreService)
     {
         $this->petStoreService = $petStoreService;
 
