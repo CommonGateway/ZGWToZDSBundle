@@ -1,10 +1,10 @@
 <?php
 return (object)[
-    'rootNamespace' => 'CommonGateway\PetStoreBundle',
+    'rootNamespace' => 'CommonGateway\ZGWToZDSBundle',
     'destDirectory' => 'docs/classes',
     'format' => 'github',
     'classes' => [
-        '\CommonGateway\PetStoreBundle\Service\InstallationService',
-        '\CommonGateway\PetStoreBundle\Service\PetStoreService'
+        '\CommonGateway\ZGWToZDSBundle\Service\InstallationService',
+        '\CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService'
     ],
 ];

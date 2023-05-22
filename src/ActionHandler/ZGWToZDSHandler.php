@@ -6,10 +6,10 @@
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 
-namespace CommonGateway\PetStoreBundle\ActionHandler;
+namespace CommonGateway\ZGWToZDSBundle\ActionHandler;
 
 use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
-use CommonGateway\PetStoreBundle\Service\ZGWToZDSService;
+use CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService;
 
 
 class ZGWToZDSHandler implements ActionHandlerInterface
