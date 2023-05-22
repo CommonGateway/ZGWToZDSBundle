@@ -6,12 +6,12 @@
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 
-namespace CommonGateway\PetStoreBundle\Service;
+namespace CommonGateway\ZGWToZDSBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 
-class PetStoreService
+class ZGWToZDSService
 {
 
     /**
@@ -61,16 +61,16 @@ class PetStoreService
      *
      * @return array A handler must ALWAYS return an array
      */
-    public function petStoreHandler(array $data, array $configuration): array
+    public function zgwToZdsHandler(array $data, array $configuration): array
     {
         $this->data          = $data;
         $this->configuration = $configuration;
 
-        $this->logger->debug("PetStoreService -> petStoreHandler()");
+        $this->logger->debug("ZGWToZDSService -> ZGWToZDSHandler()");
 
-        return ['response' => 'Hello. Your PetStoreBundle works'];
+        return ['response' => 'Hello. Your ZGWToZDSBundle works'];
 
-    }//end petStoreHandler()
+    }//end zgwToZdsHandler()
 
 
 }//end class
