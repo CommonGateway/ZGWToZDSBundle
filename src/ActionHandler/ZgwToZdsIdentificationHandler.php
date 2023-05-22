@@ -12,7 +12,7 @@ use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
 use CommonGateway\PetStoreBundle\Service\ZGWToZDSService;
 
 
-class ZGWToZDSDi02Handler implements ActionHandlerInterface
+class ZgwToZdsIdentificationHandler implements ActionHandlerInterface
 {
 
     /**
@@ -43,10 +43,10 @@ class ZGWToZDSDi02Handler implements ActionHandlerInterface
     public function getConfiguration(): array
     {
         return [
-            '$id'         => 'https://example.com/ActionHandler/PetStoreHandler.ActionHandler.json',
+            '$id'         => 'https://zds.nlActionHandler/ZgwToZdsIdentificationHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
-            'title'       => 'PetStore ActionHandler',
-            'description' => 'This handler returns a welcoming string',
+            'title'       => 'Zaak Identification Handler',
+            'description' => 'This handler creates a case identification message and sets the identification for the response.',
             'required'    => [],
             'properties'  => [],
         ];
@@ -66,7 +66,7 @@ class ZGWToZDSDi02Handler implements ActionHandlerInterface
      */
     public function run(array $data, array $configuration): array
     {
-        return $this->toZDSService->petStoreHandler($data, $configuration);
+        return $this->toZDSService->zgwToZdsIdentificationHandler($data, $configuration);
 
     }//end run()
 

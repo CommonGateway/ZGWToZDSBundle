@@ -103,7 +103,7 @@ class ZGWToZDSService
     }//end zgwToZdsHandler()
 
 
-    public function zgwToZdsDi02Handler(array $data, array $configuration): array
+    public function zgwToZdsIdentificationHandler(array $data, array $configuration): array
     {
         $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json', 'common-gateway/zgw-to-zds-bundle');
         $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json', 'common-gateway/zgw-to-zds-bundle');
