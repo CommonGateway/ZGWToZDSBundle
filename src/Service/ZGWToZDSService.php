@@ -98,6 +98,7 @@ class ZGWToZDSService
 
     }//end zgwToZdsHandler()
 
+
     public function zgwToZdsDi02Handler(array $data, array $configuration): array
     {
         $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json');
@@ -114,7 +115,7 @@ class ZGWToZDSService
         $message = $encoder->encode($di02Message, 'xml');
 
         $response = $this->callService->call($message, $source, 'POST');
-        $result = $this->callService->decode($response, $source);
+        $result   = $this->callService->decode($response, $source);
 
         $zaakArray = $this->mappingService->map($result, $fromMapping);
 
@@ -124,7 +125,8 @@ class ZGWToZDSService
         $this->entityManager->flush();
 
         return $data;
-    }
+
+    }//end zgwToZdsDi02Handler()
 
 
 }//end class
