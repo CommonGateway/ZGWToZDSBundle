@@ -70,7 +70,7 @@ class ZGWToZDSService
 
         return ['response' => 'Hello. Your ZGWToZDSBundle works'];
 
-    }//end petStoreHandler()
+    }//end zgwToZdsHandler()
 
 
 }//end class
