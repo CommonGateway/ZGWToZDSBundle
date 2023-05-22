@@ -8,8 +8,12 @@
 
 namespace CommonGateway\ZGWToZDSBundle\Service;
 
+use CommonGateway\CoreBundle\Service\CallService;
+use CommonGateway\CoreBundle\Service\GatewayResourceService;
+use CommonGateway\CoreBundle\Service\MappingService;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 class ZGWToZDSService
 {
@@ -101,23 +105,23 @@ class ZGWToZDSService
 
     public function zgwToZdsDi02Handler(array $data, array $configuration): array
     {
-        $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json');
-        $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json');
-        $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json');
+        $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json', 'common-gateway/zgw-to-zds-bundle');
+        $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json', 'common-gateway/zgw-to-zds-bundle');
+        $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
 
         $zaak = $this->entityManager->getRepository('App:ObjectEntity')->find($data['_id']);
 
         $zaakArray = $zaak->toArray();
 
-        $di02Message = $this->mappingService->map($zaakArray, $toMapping);
+        $di02Message = $this->mappingService->mapping($zaakArray, $toMapping);
 
         $encoder = new XmlEncoder();
         $message = $encoder->encode($di02Message, 'xml');
 
-        $response = $this->callService->call($message, $source, 'POST');
-        $result   = $this->callService->decode($response, $source);
+        $response = $this->callService->call($source, '/VrijeBerichten', 'POST', ['body' => $message]);
+        $result   = $this->callService->decodeResponse($source, $response);
 
-        $zaakArray = $this->mappingService->map($result, $fromMapping);
+        $zaakArray = $this->mappingService->mapping($fromMapping, $result);
 
         $zaak->hydrate($zaakArray);
 
