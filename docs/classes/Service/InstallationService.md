@@ -1,4 +1,4 @@
-# CommonGateway\PetStoreBundle\Service\InstallationService
+# CommonGateway\ZGWToZDSBundle\Service\InstallationService
 
 ## Implements:
 

@@ -9,7 +9,7 @@
 namespace CommonGateway\ZGWToZDSBundle\ActionHandler;
 
 use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
-use CommonGateway\PetStoreBundle\Service\ZGWToZDSService;
+use CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService;
 
 
 class ZGWToZDSHandler implements ActionHandlerInterface

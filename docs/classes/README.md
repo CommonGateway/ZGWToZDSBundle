@@ -1,4 +1,4 @@
-# CommonGateway\PetStoreBundle
+# CommonGateway\ZGWToZDSBundle
 
 *   [Service\InstallationService](Service/InstallationService.md)
-*   [Service\PetStoreService](Service/PetStoreService.md)
+*   [Service\ZGWToZDSService](Service/ZGWToZDSService.md)
