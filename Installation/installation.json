@@ -8,16 +8,16 @@
                 "listens": ["simxml.zaak.created", "zrc.zaak.created"],
                 "configuration": {
                     "description": "This is an example of how we can create a Action for an ActionHandler.",
-                    "note": "Note that creating an Action for an ActionHandler this way can only be done once! If you want to create more actions using the same ActionHandler please use action.json files in the Installation folder.",
+                    "note": "Note that creating an Action for an ActionHandler this way can only be done once! If you want to create more actions using the same ActionHandler please use action.json files in the Installation folder."
                 }
             },
             {
                 "reference": "https://zds.nlActionHandler/ZgwToZdsObjectIdentificationAction.Action.json",
-                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsIdentificationHandler",
+                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsObjectIdentificationHandler",
                 "listens": ["simxml.document.created", "zrc.document.created"],
                 "configuration": {
                     "description": "This is an example of how we can create a Action for an ActionHandler.",
-                    "note": "Note that creating an Action for an ActionHandler this way can only be done once! If you want to create more actions using the same ActionHandler please use action.json files in the Installation folder.",
+                    "note": "Note that creating an Action for an ActionHandler this way can only be done once! If you want to create more actions using the same ActionHandler please use action.json files in the Installation folder."
                 }
             }
         ]
