@@ -49,7 +49,20 @@ class ZgwToZdsObjectIdentificationHandler implements ActionHandlerInterface
             'description' =>
                 'This handler creates a case identification message and sets the identification for the response.',
             'required'    => [],
-            'properties'  => [],
+            'properties'  => [
+                'SOAPaction'           => [
+                    'type'        => 'string',
+                    'description' => 'the default SOAPaction header for this action',
+                    'example'     => 'http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02',
+                    'required'    => true,
+                ],
+                'endpoint'           => [
+                    'type'        => 'string',
+                    'description' => 'the default endpoint the action should fire to',
+                    'example'     => '/VrijeBerichten',
+                    'required'    => true,
+                ],
+            ],
         ];
 
     }//end getConfiguration()

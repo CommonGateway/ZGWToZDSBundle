@@ -1,6 +1,6 @@
 {
-  "title": "Du02ToZgwZaak",
-  "$id": "https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json",
+  "title": "Du02ToZgwInformatieObject",
+  "$id": "https://zds.nl/mapping/zds.Du02ToZgwInformatieObject.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
   "version": "0.0.1",
   "passTrough": false,
