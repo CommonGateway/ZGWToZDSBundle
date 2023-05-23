@@ -26,6 +26,21 @@
                 "configuration": {
                     "endpoint": "/VrijeBerichten",
                     "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02"
+                },
+                "throws": [
+                    "zds.documentId.created"
+                ]
+            },
+            {
+                "reference": "https://zds.nlActionHandler/ZgwToZdsInformationObjectAction.Action.json",
+                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsInformationObjectHandler",
+                "listens": [
+                    "zds.documentId.created"
+                ],
+                "version": "0.0.1",
+                "configuration": {
+                    "endpoint": "/OntvangAsynchroon",
+                    "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/maakZaakdocument_Lk01"
                 }
             }
         ]

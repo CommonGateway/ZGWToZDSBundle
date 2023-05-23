@@ -199,10 +199,12 @@ class ZGWToZDSService
                 'common-gateway/zgw-to-zds-bundle'
             );
 
-        $document = $this->entityManager->getRepository('App:ObjectEntity')
+        $caseDocument = $this->entityManager->getRepository('App:ObjectEntity')
             ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
 
-        $documentArray = \Safe\json_decode($data['response']->getContent(), true);
+        $caseDocumentArray = $caseDocument->toArray();
+
+        $documentArray = $caseDocumentArray['informatieobject'];
 
         $di02Message = $this->mappingService->mapping($toMapping, $documentArray);
 
@@ -222,13 +224,13 @@ class ZGWToZDSService
 
         $documentArray = $this->mappingService->mapping($fromMapping, $result);
 
-        $document->hydrate($documentArray);
+        $caseDocument->hydrate(['informatieobject' => $documentArray]);
 
-        $this->entityManager->persist($document);
+        $this->entityManager->persist($caseDocument);
         $this->entityManager->flush();
 
         $data['response'] = new Response(
-            \Safe\json_encode($document->toArray()),
+            \Safe\json_encode($caseDocument->toArray()),
             201,
             ['content-type' => 'application/json']
         );
@@ -236,6 +238,39 @@ class ZGWToZDSService
         return $data;
 
     }//end zgwToZdsIdentificationHandler()
+
+    public function zgwToZdsInformationObjectHandler(array $data, array $configuration): array
+    {
+        $caseDocument = $this->entityManager->getRepository('App:ObjectEntity')
+            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+        $toMapping   = $this->resourceService->getMapping(
+            'https://zds.nl/mapping/zds.InformatieObjectToLk02.mapping.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
+        $source      = $this->resourceService->getSource(
+            'https://zds.nl/source/zds.source.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
+
+        $caseDocumentArray = $caseDocument->toArray();
+
+        $lk01Message = $this->mappingService->mapping($toMapping, $caseDocumentArray);
+
+        $encoder =         $encoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
+        $message = $encoder->encode($lk01Message, 'xml');
+
+        $response = $this->callService->call(
+            $source,
+            $configuration['endpoint'],
+            'POST',
+            [
+                'body' => $message,
+                'headers' => ['SOAPaction' => $configuration['SOAPaction']]
+            ]
+        );
+
+        return $data;
+    }
 
 
 }//end class
