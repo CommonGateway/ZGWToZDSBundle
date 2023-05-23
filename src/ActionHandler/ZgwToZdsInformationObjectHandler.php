@@ -55,7 +55,7 @@ class ZgwToZdsInformationObjectHandler implements ActionHandlerInterface
                     'example'     => 'http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02',
                     'required'    => true,
                 ],
-                'endpoint'           => [
+                'endpoint'   => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire to',
                     'example'     => '/VrijeBerichten',
