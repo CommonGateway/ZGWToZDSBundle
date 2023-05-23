@@ -46,17 +46,16 @@ class ZgwToZdsIdentificationHandler implements ActionHandlerInterface
             '$id'         => 'https://zds.nlActionHandler/ZgwToZdsIdentificationHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
             'title'       => 'Zaak Identification Handler',
-            'description' =>
-                'This handler creates a case identification message and sets the identification for the response.',
+            'description' => 'This handler creates a case identification message and sets the identification for the response.',
             'required'    => [],
             'properties'  => [
-                'SOAPaction'           => [
+                'SOAPaction' => [
                     'type'        => 'string',
                     'description' => 'the default SOAPaction header for this action',
                     'example'     => 'http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02',
                     'required'    => true,
                 ],
-                'endpoint'           => [
+                'endpoint' => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire to',
                     'example'     => '/VrijeBerichten',

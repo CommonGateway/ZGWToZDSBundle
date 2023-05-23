@@ -121,9 +121,18 @@ class ZGWToZDSService
     {
         $this->configuration = $configuration;
 
-        $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json', 'common-gateway/zgw-to-zds-bundle');
-        $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json', 'common-gateway/zgw-to-zds-bundle');
-        $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
+        $toMapping   = $this->resourceService->getMapping(
+            'https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
+        $fromMapping = $this->resourceService->getMapping(
+            'https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
+        $source      = $this->resourceService->getSource(
+            'https://zds.nl/source/zds.source.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
 
         $zaak = $this->entityManager->getRepository('App:ObjectEntity')
             ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
@@ -177,9 +186,18 @@ class ZGWToZDSService
 
         $this->configuration = $configuration;
 
-        $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.InformatieObjectToDi02.mapping.json', 'common-gateway/zgw-to-zds-bundle');
-        $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwInformatieObject.mapping.json', 'common-gateway/zgw-to-zds-bundle');
-        $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
+        $toMapping   = $this->resourceService->getMapping(
+                'https://zds.nl/mapping/zds.InformatieObjectToDi02.mapping.json',
+                'common-gateway/zgw-to-zds-bundle'
+            );
+        $fromMapping = $this->resourceService->getMapping(
+                'https://zds.nl/mapping/zds.Du02ToZgwInformatieObject.mapping.json',
+                'common-gateway/zgw-to-zds-bundle'
+            );
+        $source      = $this->resourceService->getSource(
+                'https://zds.nl/source/zds.source.json',
+                'common-gateway/zgw-to-zds-bundle'
+            );
 
         $document = $this->entityManager->getRepository('App:ObjectEntity')
             ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
