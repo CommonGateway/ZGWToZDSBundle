@@ -243,7 +243,7 @@ class ZGWToZDSService
     public function zgwToZdsInformationObjectHandler(array $data, array $configuration): array
     {
         $caseDocument = $this->entityManager->getRepository('App:ObjectEntity')
-            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+            ->find(\Safe\json_decode($data['response']->getContent(), true)['_self']['id']);
         $toMapping    = $this->resourceService->getMapping(
             'https://zds.nl/mapping/zds.InformatieObjectToLk02.mapping.json',
             'common-gateway/zgw-to-zds-bundle'

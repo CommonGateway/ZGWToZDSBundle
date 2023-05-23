@@ -45,7 +45,7 @@ class ZgwToZdsInformationObjectHandler implements ActionHandlerInterface
         return [
             '$id'         => 'https://zds.nlActionHandler/ZgwToZdsIdentificationHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
-            'title'       => 'Zaak Identification Handler',
+            'title'       => 'Document Handler',
             'description' => 'This handler creates a document identification message and sets the identification for the response.',
             'required'    => [],
             'properties'  => [
@@ -58,7 +58,7 @@ class ZgwToZdsInformationObjectHandler implements ActionHandlerInterface
                 'endpoint'   => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire to',
-                    'example'     => '/VrijeBerichten',
+                    'example'     => '/OntvangAsynchroon',
                     'required'    => true,
                 ],
             ],

@@ -30,6 +30,6 @@
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:taal": "informatieobject.taal",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:inhoud.@ns1:bestandsnaam": "informatieobject.bestandsnaam",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:inhoud.#": "informatieobject.inhoud",
-    "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:isRelevantVoor.ns2:gerelateerde.ns2:identificatie": "zaak"
+    "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:isRelevantVoor.ns2:gerelateerde.ns2:identificatie": "zaak.identificatie"
   }
 }
