@@ -5,13 +5,27 @@
             {
                 "reference": "https://zds.nlActionHandler/ZgwToZdsIdentificationAction.Action.json",
                 "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsIdentificationHandler",
-                "listens": ["simxml.zaak.created", "zrc.zaak.created"],
+                "listens": [
+                    "simxml.zaak.created",
+                    "zrc.zaak.created"
+                ],
+                "version": "0.0.1",
                 "configuration": {
-                    "description": "This is an example of how we can create a Action for an ActionHandler.",
-                    "note": "Note that creating an Action for an ActionHandler this way can only be done once! If you want to create more actions using the same ActionHandler please use action.json files in the Installation folder.",
-                    "configurationKey": "Some configuration here...",
-                    "doThis": false,
-                    "doThat": true
+                    "endpoint": "/VrijeBerichten",
+                    "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02"
+                }
+            },
+            {
+                "reference": "https://zds.nlActionHandler/ZgwToZdsObjectIdentificationAction.Action.json",
+                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsObjectIdentificationHandler",
+                "listens": [
+                    "simxml.document.created",
+                    "zrc.document.created"
+                ],
+                "version": "0.0.1",
+                "configuration": {
+                    "endpoint": "/VrijeBerichten",
+                    "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02"
                 }
             }
         ]

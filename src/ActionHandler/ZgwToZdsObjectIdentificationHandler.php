@@ -12,7 +12,7 @@ use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
 use CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService;
 
 
-class ZgwToZdsIdentificationHandler implements ActionHandlerInterface
+class ZgwToZdsObjectIdentificationHandler implements ActionHandlerInterface
 {
 
     /**
@@ -46,16 +46,16 @@ class ZgwToZdsIdentificationHandler implements ActionHandlerInterface
             '$id'         => 'https://zds.nlActionHandler/ZgwToZdsIdentificationHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
             'title'       => 'Zaak Identification Handler',
-            'description' => 'This handler creates a case identification message and sets the identification for the response.',
+            'description' => 'This handler creates a document identification message and sets the identification for the response.',
             'required'    => [],
             'properties'  => [
                 'SOAPaction' => [
                     'type'        => 'string',
                     'description' => 'the default SOAPaction header for this action',
-                    'example'     => 'http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02',
+                    'example'     => 'http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02',
                     'required'    => true,
                 ],
-                'endpoint' => [
+                'endpoint'           => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire to',
                     'example'     => '/VrijeBerichten',
@@ -79,7 +79,7 @@ class ZgwToZdsIdentificationHandler implements ActionHandlerInterface
      */
     public function run(array $data, array $configuration): array
     {
-        return $this->toZDSService->zgwToZdsIdentificationHandler($data, $configuration);
+        return $this->toZDSService->zgwToZdsObjectIdentificationHandler($data, $configuration);
 
     }//end run()
 

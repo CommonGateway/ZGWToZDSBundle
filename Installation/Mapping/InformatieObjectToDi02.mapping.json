@@ -1,0 +1,20 @@
+{
+  "title": "InformatieObjectToDi02",
+  "$id": "https://zds.nl/mapping/zds.InformatieObjectToDi02.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.@xmlns:ns1": "http://www.egem.nl/StUF/StUF0301",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.@xmlns:ns2": "http://www.egem.nl/StUF/sector/zkn/0310",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:berichtcode": "Di02",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:zender.ns1:organisatie": "SIM",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:zender.ns1:applicatie": "SIMsite",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:ontvanger.ns1:organisatie": "1892",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:ontvanger.ns1:applicatie": "Liber",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer": "identificatie",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:tijdstipBericht": "{{ 'now'|date('YmdHisv') }}",
+    "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:functie": "genereerDocumentidentificatie"
+  }
+}
