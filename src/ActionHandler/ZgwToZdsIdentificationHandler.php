@@ -46,7 +46,8 @@ class ZgwToZdsIdentificationHandler implements ActionHandlerInterface
             '$id'         => 'https://zds.nlActionHandler/ZgwToZdsIdentificationHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
             'title'       => 'Zaak Identification Handler',
-            'description' => 'This handler creates a case identification message and sets the identification for the response.',
+            'description' =>
+                'This handler creates a case identification message and sets the identification for the response.',
             'required'    => [],
             'properties'  => [],
         ];

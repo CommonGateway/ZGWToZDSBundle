@@ -20,12 +20,16 @@ class ZGWToZDSService
 {
 
     /**
-     * @var array
+     * Configuration for handlers.
+     *
+     * @var array $configuration
      */
     private array $configuration;
 
     /**
-     * @var array
+     * Data for handlers.
+     *
+     * @var array $data
      */
     private array $data;
 
@@ -115,11 +119,14 @@ class ZGWToZDSService
      */
     public function zgwToZdsIdentificationHandler(array $data, array $configuration): array
     {
+        $this->configuration = $configuration;
+
         $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.zgwZaakToDi02.mapping.json', 'common-gateway/zgw-to-zds-bundle');
         $fromMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json', 'common-gateway/zgw-to-zds-bundle');
         $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
 
-        $zaak = $this->entityManager->getRepository('App:ObjectEntity')->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+        $zaak = $this->entityManager->getRepository('App:ObjectEntity')
+            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
 
         $zaakArray = \Safe\json_decode($data['response']->getContent(), true);
 
@@ -138,7 +145,11 @@ class ZGWToZDSService
         $this->entityManager->persist($zaak);
         $this->entityManager->flush();
 
-        $data['response'] = new Response(\Safe\json_encode($zaak->toArray()), 201, ['content-type' => 'application/json']); //TODO: This should become an SimXML response
+        $data['response'] = new Response(
+            \Safe\json_encode($zaak->toArray()),
+            201,
+            ['content-type' => 'application/json']
+        );
 
         return $data;
 
