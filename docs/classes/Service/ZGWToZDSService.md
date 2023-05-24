@@ -7,6 +7,7 @@
 |[\_\_construct](#zgwtozdsservice__construct)||
 |[zgwToZdsHandler](#zgwtozdsservicezgwtozdshandler)|An example handler that is triggered by an action.|
 |[zgwToZdsIdentificationHandler](#zgwtozdsservicezgwtozdsidentificationhandler)|Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier|
+|[zgwToZdsInformationObjectHandler](#zgwtozdsservicezgwtozdsinformationobjecthandler)||
 |[zgwToZdsObjectIdentificationHandler](#zgwtozdsservicezgwtozdsobjectidentificationhandler)|Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier|
 
 ### ZGWToZDSService::\_\_construct
@@ -74,6 +75,24 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 `array`
 
 > The resulting data array.
+
+<hr />
+
+### ZGWToZDSService::zgwToZdsInformationObjectHandler
+
+**Description**
+
+```php
+ zgwToZdsInformationObjectHandler (void)
+```
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`void`
 
 <hr />
 
