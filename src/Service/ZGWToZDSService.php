@@ -102,19 +102,19 @@ class ZGWToZDSService
         $this->data          = $data;
         $this->configuration = $configuration;
 
-        $toMapping   = $this->resourceService->getMapping('https://zds.nl/mapping/zds.ZgwZaakToZds.mapping.json', 'common-gateway/zgw-to-zds-bundle');
-        $source      = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
+        $toMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.ZgwZaakToZds.mapping.json', 'common-gateway/zgw-to-zds-bundle');
+        $source    = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
 
         $zaak = $this->entityManager->getRepository('App:ObjectEntity')
             ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
 
         $zaakArray = $zaak->toArray();
-        
+
         $zds = $this->mappingService->mapping($toMapping, $zaakArray);
 
         $encoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
         $message = $encoder->encode($zds, 'xml');
-        
+
         $response = $this->callService->call($source, '/OntvangAsynchroon', 'POST', ['body' => $message]);
         $result   = $this->callService->decodeResponse($source, $response);
 
@@ -169,8 +169,8 @@ class ZGWToZDSService
             $configuration['endpoint'],
             'POST',
             [
-                'body' => $message,
-                'headers' => ['SOAPaction' => $configuration['SOAPaction']]
+                'body'    => $message,
+                'headers' => ['SOAPaction' => $configuration['SOAPaction']],
             ]
         );
         $result   = $this->callService->decodeResponse($source, $response);
@@ -234,8 +234,8 @@ class ZGWToZDSService
             $configuration['endpoint'],
             'POST',
             [
-                'body' => $message,
-                'headers' => ['SOAPaction' => $configuration['SOAPaction']]
+                'body'    => $message,
+                'headers' => ['SOAPaction' => $configuration['SOAPaction']],
             ]
         );
         $result   = $this->callService->decodeResponse($source, $response);
@@ -255,7 +255,7 @@ class ZGWToZDSService
 
         return $data;
 
-    }//end zgwToZdsIdentificationHandler()
+    }//end zgwToZdsObjectIdentificationHandler()
 
 
 }//end class
