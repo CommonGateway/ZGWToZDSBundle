@@ -6,14 +6,19 @@
                 "reference": "https://zds.nlActionHandler/ZgwToZdsIdentificationAction.Action.json",
                 "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsIdentificationHandler",
                 "listens": [
-                    "simxml.zaak.created",
-                    "zrc.zaak.created"
+                  "simxml.zaak.created",
+                  "zrc.zaak.created"
                 ],
                 "version": "0.0.1",
                 "configuration": {
-                    "endpoint": "/VrijeBerichten",
-                    "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02"
+                  "endpoint": "/VrijeBerichten",
+                  "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02"
                 }
+            },
+            {
+              "reference": "https://zds.nl/action/hp.ZGWZaakToZDSAction.action.json",
+              "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZGWToZDSHandler",
+              "listens": ["zrc.zaak.to.zds"]
             },
             {
                 "reference": "https://zds.nlActionHandler/ZgwToZdsObjectIdentificationAction.Action.json",

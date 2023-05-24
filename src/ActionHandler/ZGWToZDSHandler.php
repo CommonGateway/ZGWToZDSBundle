@@ -16,21 +16,21 @@ class ZGWToZDSHandler implements ActionHandlerInterface
 {
 
     /**
-     * The pet store service used by the handler
+     * The zgw to zds service used by the handler
      *
      * @var ZGWToZDSService
      */
-    private ZGWToZDSService $petStoreService;
+    private ZGWToZDSService $service;
 
 
     /**
      * The constructor
      *
-     * @param ZGWToZDSService $petStoreService The pet store service
+     * @param ZGWToZDSService $service The zgw to zds service
      */
-    public function __construct(ZGWToZDSService $petStoreService)
+    public function __construct(ZGWToZDSService $service)
     {
-        $this->petStoreService = $petStoreService;
+        $this->service = $service;
 
     }//end __construct()
 
@@ -43,10 +43,10 @@ class ZGWToZDSHandler implements ActionHandlerInterface
     public function getConfiguration(): array
     {
         return [
-            '$id'         => 'https://example.com/ActionHandler/PetStoreHandler.ActionHandler.json',
+            '$id'         => 'https://example.com/ActionHandler/ZGWToZDSHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
-            'title'       => 'PetStore ActionHandler',
-            'description' => 'This handler returns a welcoming string',
+            'title'       => 'ZGW Zaak to ZDS ActionHandler',
+            'description' => 'ZGW Zaak to ZDS',
             'required'    => [],
             'properties'  => [],
         ];
@@ -66,7 +66,8 @@ class ZGWToZDSHandler implements ActionHandlerInterface
      */
     public function run(array $data, array $configuration): array
     {
-        return $this->petStoreService->petStoreHandler($data, $configuration);
+
+        return $this->service->zgwToZdsHandler($data, $configuration);
 
     }//end run()
 
