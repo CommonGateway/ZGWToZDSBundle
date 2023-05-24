@@ -21,7 +21,7 @@
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.@ns1:entiteittype": "EDC",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.@ns1verwerkingssoort": "T",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:identificatie": "informatieobject.identificatie",
-    "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:dct&#46;omschrijving": "informatieobject.informatieobjecttype.omschrijving",
+    "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:dct&#46;omschrijving": "informatieobject.informatieobjecttype.beschrijving",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:creatiedatum": "informatieobject.creatiedatum",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:titel": "informatieobject.titel",
     "SOAP-ENV:Body.ns2:edcLk01.ns2:object.ns2:auteur":  "informatieobject.auteur",
