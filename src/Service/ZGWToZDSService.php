@@ -102,9 +102,29 @@ class ZGWToZDSService
         $this->data          = $data;
         $this->configuration = $configuration;
 
-        $this->logger->debug("ZGWToZDSService -> ZGWToZDSHandler()");
+        $toMapping = $this->resourceService->getMapping('https://zds.nl/mapping/zds.ZgwZaakToZds.mapping.json', 'common-gateway/zgw-to-zds-bundle');
+        $source    = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
 
-        return ['response' => 'Hello. Your ZGWToZDSBundle works'];
+        $zaak = $this->entityManager->getRepository('App:ObjectEntity')
+            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+
+        $zaakArray = $zaak->toArray();
+
+        $zds = $this->mappingService->mapping($toMapping, $zaakArray);
+
+        $encoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
+        $message = $encoder->encode($zds, 'xml');
+
+        $response = $this->callService->call($source, '/OntvangAsynchroon', 'POST', ['body' => $message]);
+        $result   = $this->callService->decodeResponse($source, $response);
+
+        $data['response'] = new Response(
+            \Safe\json_encode($zaakArray),
+            201,
+            ['content-type' => 'application/json']
+        );
+
+        return $data;
 
     }//end zgwToZdsHandler()
 
@@ -149,8 +169,8 @@ class ZGWToZDSService
             $configuration['endpoint'],
             'POST',
             [
-                'body' => $message,
-                'headers' => ['SOAPaction' => $configuration['SOAPaction']]
+                'body'    => $message,
+                'headers' => ['SOAPaction' => $configuration['SOAPaction']],
             ]
         );
         $result   = $this->callService->decodeResponse($source, $response);
@@ -187,17 +207,17 @@ class ZGWToZDSService
         $this->configuration = $configuration;
 
         $toMapping   = $this->resourceService->getMapping(
-                'https://zds.nl/mapping/zds.InformatieObjectToDi02.mapping.json',
-                'common-gateway/zgw-to-zds-bundle'
-            );
+            'https://zds.nl/mapping/zds.InformatieObjectToDi02.mapping.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
         $fromMapping = $this->resourceService->getMapping(
-                'https://zds.nl/mapping/zds.Du02ToZgwInformatieObject.mapping.json',
-                'common-gateway/zgw-to-zds-bundle'
-            );
+            'https://zds.nl/mapping/zds.Du02ToZgwInformatieObject.mapping.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
         $source      = $this->resourceService->getSource(
-                'https://zds.nl/source/zds.source.json',
-                'common-gateway/zgw-to-zds-bundle'
-            );
+            'https://zds.nl/source/zds.source.json',
+            'common-gateway/zgw-to-zds-bundle'
+        );
 
         $document = $this->entityManager->getRepository('App:ObjectEntity')
             ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
@@ -214,8 +234,8 @@ class ZGWToZDSService
             $configuration['endpoint'],
             'POST',
             [
-                'body' => $message,
-                'headers' => ['SOAPaction' => $configuration['SOAPaction']]
+                'body'    => $message,
+                'headers' => ['SOAPaction' => $configuration['SOAPaction']],
             ]
         );
         $result   = $this->callService->decodeResponse($source, $response);
@@ -235,7 +255,7 @@ class ZGWToZDSService
 
         return $data;
 
-    }//end zgwToZdsIdentificationHandler()
+    }//end zgwToZdsObjectIdentificationHandler()
 
 
 }//end class
