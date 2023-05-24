@@ -109,7 +109,7 @@ class ZGWToZDSService
      */
     public function zgwToZdsHandler(array $data, array $configuration): array
     {
-        if(!isset($data['object'])) {
+        if(isset($data['object']) === false) {
             $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
@@ -157,7 +157,7 @@ class ZGWToZDSService
      */
     public function zgwToZdsIdentificationHandler(array $data, array $configuration): array
     {
-        if(!isset($data['object'])) {
+        if(isset($data['object']) === false) {
             $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
@@ -222,7 +222,7 @@ class ZGWToZDSService
      */
     public function zgwToZdsObjectIdentificationHandler(array $data, array $configuration): array
     {
-        if(!isset($data['object'])) {
+        if(isset($data['object']) === false) {
             $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
@@ -293,7 +293,7 @@ class ZGWToZDSService
      */
     public function zgwToZdsInformationObjectHandler(array $data, array $configuration): array
     {
-        if(!isset($data['object'])) {
+        if(isset($data['object']) === false) {
             $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
