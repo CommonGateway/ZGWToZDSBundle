@@ -106,7 +106,7 @@ class ZGWToZDSService
         $source    = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
 
         $zaak = $this->entityManager->getRepository('App:ObjectEntity')
-            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+            ->find(\Safe\json_decode($data['response']->getContent(), true)['_self']['id']);
 
         $zaakArray = $zaak->toArray();
 
