@@ -1,0 +1,14 @@
+{
+  "title": "ZgwEigenschapToZds",
+  "$id": "https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "ns2:gerelateerde.ns2:natuurlijkPersoon.@ns1:entiteittype": "NPS",
+    "ns2:gerelateerde.ns2:natuurlijkPersoon.@ns1:verwerkingssoort": "T",
+    "ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:inp&#46;bsn": "BSN",
+    "ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:geslachtsnaam": "ACHTERNAAM"
+  },
+  "unset": {}
+}
