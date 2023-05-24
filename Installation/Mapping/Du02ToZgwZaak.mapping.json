@@ -1,0 +1,10 @@
+{
+  "title": "Du02ToZgwZaak",
+  "$id": "https://zds.nl/mapping/zds.Du02ToZgwZaak.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "identificatie": "soap:Body.ns2:genereerZaakIdentificatie_Du02.ns2:zaak.ns2:identificatie"
+  }
+}

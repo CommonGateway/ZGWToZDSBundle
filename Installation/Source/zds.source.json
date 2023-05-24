@@ -1,16 +1,13 @@
 {
   "$id": "https://zds.nl/source/zds.source.json",
   "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "ZDS Endpoint",
   "description": "A ZDS endpoint. Because of secrecy the actual endpoint is not in this file. It merely shows the fields that should be set.",
   "location": "",
   "configuration": {
     "cert": "",
     "ssl_key": "",
-    "headers": {
-      "SOAPaction": "\"http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02\""
-    },
     "verify": false
   }
 }
