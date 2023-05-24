@@ -8,10 +8,12 @@
 
 namespace CommonGateway\ZGWToZDSBundle\Service;
 
+use App\Event\ActionEvent;
 use CommonGateway\CoreBundle\Service\CallService;
 use CommonGateway\CoreBundle\Service\GatewayResourceService;
 use CommonGateway\CoreBundle\Service\MappingService;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -66,6 +68,12 @@ class ZGWToZDSService
      */
     private CallService $callService;
 
+    /**
+     * The event dispatcher.
+     * @var EventDispatcherInterface $eventDispatcher
+     */
+    private EventDispatcherInterface $eventDispatcher;
+
 
     /**
      * @param EntityManagerInterface $entityManager The Entity Manager.
@@ -76,7 +84,8 @@ class ZGWToZDSService
         LoggerInterface $pluginLogger,
         MappingService $mappingService,
         GatewayResourceService $resourceService,
-        CallService $callService
+        CallService $callService,
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->entityManager   = $entityManager;
         $this->logger          = $pluginLogger;
@@ -85,6 +94,7 @@ class ZGWToZDSService
         $this->mappingService  = $mappingService;
         $this->resourceService = $resourceService;
         $this->callService     = $callService;
+        $this->eventDispatcher = $eventDispatcher;
 
     }//end __construct()
 
@@ -106,7 +116,7 @@ class ZGWToZDSService
         $source    = $this->resourceService->getSource('https://zds.nl/source/zds.source.json', 'common-gateway/zgw-to-zds-bundle');
 
         $zaak = $this->entityManager->getRepository('App:ObjectEntity')
-            ->find(\Safe\json_decode($data['response']->getContent(), true)['_self']['id']);
+            ->find($data['object']['_self']['id']);
 
         $zaakArray = $zaak->toArray();
 
@@ -118,11 +128,14 @@ class ZGWToZDSService
         $response = $this->callService->call($source, '/OntvangAsynchroon', 'POST', ['body' => $message]);
         $result   = $this->callService->decodeResponse($source, $response);
 
-        $data['response'] = new Response(
-            \Safe\json_encode($zaakArray),
-            201,
-            ['content-type' => 'application/json']
-        );
+        if(isset($zaakArray['zaakinformatieobjecten']) === true) {
+            foreach($zaakArray['zaakinformatieobjecten'] as $caseInformationObject) {
+                $subData = $data;
+                $subData['object'] = $caseInformationObject;
+                $event = new ActionEvent('commongateway.action.event', $subData, 'simxml.document.created');
+                $this->eventDispatcher->dispatch($event, 'commongateway.action.event');
+            }
+        }
 
         return $data;
 
@@ -155,9 +168,9 @@ class ZGWToZDSService
         );
 
         $zaak = $this->entityManager->getRepository('App:ObjectEntity')
-            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+            ->find($data['object']['_self']['id']);
 
-        $zaakArray = \Safe\json_decode($data['response']->getContent(), true);
+        $zaakArray = $data['object'];
 
         $di02Message = $this->mappingService->mapping($toMapping, $zaakArray);
 
@@ -182,11 +195,7 @@ class ZGWToZDSService
         $this->entityManager->persist($zaak);
         $this->entityManager->flush();
 
-        $data['response'] = new Response(
-            \Safe\json_encode($zaak->toArray()),
-            201,
-            ['content-type' => 'application/json']
-        );
+        $data['object'] = $zaak->toArray();
 
         return $data;
 
@@ -220,7 +229,7 @@ class ZGWToZDSService
         );
 
         $caseDocument = $this->entityManager->getRepository('App:ObjectEntity')
-            ->find(\Safe\json_decode($data['response']->getContent(), true)['_id']);
+            ->find($data['object']['_self']['id']);
 
         $caseDocumentArray = $caseDocument->toArray();
 
@@ -260,10 +269,18 @@ class ZGWToZDSService
     }//end zgwToZdsObjectIdentificationHandler()
 
 
+    /**
+     * Translate information objects to Lk01 messages and send them to a source.
+     *
+     * @param array $data          The data array
+     * @param array $configuration The configuration array
+     *
+     * @return array The updated data array
+     */
     public function zgwToZdsInformationObjectHandler(array $data, array $configuration): array
     {
         $caseDocument = $this->entityManager->getRepository('App:ObjectEntity')
-            ->find(\Safe\json_decode($data['response']->getContent(), true)['_self']['id']);
+            ->find($data['object']['_self']['id']);
         $toMapping    = $this->resourceService->getMapping(
             'https://zds.nl/mapping/zds.InformatieObjectToLk02.mapping.json',
             'common-gateway/zgw-to-zds-bundle'
