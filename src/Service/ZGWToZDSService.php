@@ -70,6 +70,7 @@ class ZGWToZDSService
 
     /**
      * The event dispatcher.
+     *
      * @var EventDispatcherInterface $eventDispatcher
      */
     private EventDispatcherInterface $eventDispatcher;
@@ -109,11 +110,11 @@ class ZGWToZDSService
      */
     public function zgwToZdsHandler(array $data, array $configuration): array
     {
-        if(isset($data['object']) === false) {
-            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+        if (isset($data['object']) === false) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin' => 'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
-        
+
         $this->data          = $data;
         $this->configuration = $configuration;
 
@@ -133,11 +134,11 @@ class ZGWToZDSService
         $response = $this->callService->call($source, '/OntvangAsynchroon', 'POST', ['body' => $message]);
         $result   = $this->callService->decodeResponse($source, $response);
 
-        if(isset($zaakArray['zaakinformatieobjecten']) === true) {
-            foreach($zaakArray['zaakinformatieobjecten'] as $caseInformationObject) {
-                $subData = $data;
+        if (isset($zaakArray['zaakinformatieobjecten']) === true) {
+            foreach ($zaakArray['zaakinformatieobjecten'] as $caseInformationObject) {
+                $subData           = $data;
                 $subData['object'] = $caseInformationObject;
-                $event = new ActionEvent('commongateway.action.event', $subData, 'simxml.document.created');
+                $event             = new ActionEvent('commongateway.action.event', $subData, 'simxml.document.created');
                 $this->eventDispatcher->dispatch($event, 'commongateway.action.event');
             }
         }
@@ -157,8 +158,8 @@ class ZGWToZDSService
      */
     public function zgwToZdsIdentificationHandler(array $data, array $configuration): array
     {
-        if(isset($data['object']) === false) {
-            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+        if (isset($data['object']) === false) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin' => 'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
 
@@ -222,8 +223,8 @@ class ZGWToZDSService
      */
     public function zgwToZdsObjectIdentificationHandler(array $data, array $configuration): array
     {
-        if(isset($data['object']) === false) {
-            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+        if (isset($data['object']) === false) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin' => 'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
 
@@ -293,8 +294,8 @@ class ZGWToZDSService
      */
     public function zgwToZdsInformationObjectHandler(array $data, array $configuration): array
     {
-        if(isset($data['object']) === false) {
-            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+        if (isset($data['object']) === false) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin' => 'common-gateway/zgw-to-zds-bundle']);
             return $this->data;
         }
 
