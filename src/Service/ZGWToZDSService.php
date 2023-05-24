@@ -109,6 +109,11 @@ class ZGWToZDSService
      */
     public function zgwToZdsHandler(array $data, array $configuration): array
     {
+        if(!isset($data['object'])) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+            return $this->data;
+        }
+        
         $this->data          = $data;
         $this->configuration = $configuration;
 
@@ -152,6 +157,11 @@ class ZGWToZDSService
      */
     public function zgwToZdsIdentificationHandler(array $data, array $configuration): array
     {
+        if(!isset($data['object'])) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+            return $this->data;
+        }
+
         $this->configuration = $configuration;
 
         $toMapping   = $this->resourceService->getMapping(
@@ -212,6 +222,10 @@ class ZGWToZDSService
      */
     public function zgwToZdsObjectIdentificationHandler(array $data, array $configuration): array
     {
+        if(!isset($data['object'])) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+            return $this->data;
+        }
 
         $this->configuration = $configuration;
 
@@ -279,6 +293,11 @@ class ZGWToZDSService
      */
     public function zgwToZdsInformationObjectHandler(array $data, array $configuration): array
     {
+        if(!isset($data['object'])) {
+            $this->logger->warning('Object not found in the data array, action will not run', ['plugin'=>'common-gateway/zgw-to-zds-bundle']);
+            return $this->data;
+        }
+
         $caseDocument = $this->entityManager->getRepository('App:ObjectEntity')
             ->find($data['object']['_self']['id']);
         $toMapping    = $this->resourceService->getMapping(
