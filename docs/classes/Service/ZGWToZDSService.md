@@ -1,16 +1,25 @@
-# CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService
+# CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService  
+
+
+
+
+
+
 
 ## Methods
 
 | Name | Description |
 |------|-------------|
-|[\_\_construct](#zgwtozdsservice__construct)||
+|[__construct](#zgwtozdsservice__construct)||
 |[zgwToZdsHandler](#zgwtozdsservicezgwtozdshandler)|An example handler that is triggered by an action.|
 |[zgwToZdsIdentificationHandler](#zgwtozdsservicezgwtozdsidentificationhandler)|Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier|
 |[zgwToZdsInformationObjectHandler](#zgwtozdsservicezgwtozdsinformationobjecthandler)||
 |[zgwToZdsObjectIdentificationHandler](#zgwtozdsservicezgwtozdsobjectidentificationhandler)|Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier|
 
-### ZGWToZDSService::\_\_construct
+
+
+
+### ZGWToZDSService::__construct  
 
 **Description**
 
@@ -18,6 +27,10 @@
  __construct (void)
 ```
 
+ 
+
+ 
+
 **Parameters**
 
 `This function has no parameters.`
@@ -26,9 +39,11 @@
 
 `void`
 
+
 <hr />
 
-### ZGWToZDSService::zgwToZdsHandler
+
+### ZGWToZDSService::zgwToZdsHandler  
 
 **Description**
 
@@ -36,14 +51,16 @@
 public zgwToZdsHandler (array $data, array $configuration)
 ```
 
-An example handler that is triggered by an action.
+An example handler that is triggered by an action. 
+
+ 
 
 **Parameters**
 
-*   `(array) $data`
-    : The data array
-*   `(array) $configuration`
-    : The configuration array
+* `(array) $data`
+: The data array  
+* `(array) $configuration`
+: The configuration array  
 
 **Return Values**
 
@@ -51,9 +68,11 @@ An example handler that is triggered by an action.
 
 > A handler must ALWAYS return an array
 
+
 <hr />
 
-### ZGWToZDSService::zgwToZdsIdentificationHandler
+
+### ZGWToZDSService::zgwToZdsIdentificationHandler  
 
 **Description**
 
@@ -61,14 +80,16 @@ An example handler that is triggered by an action.
 public zgwToZdsIdentificationHandler (array $data, array $configuration)
 ```
 
-Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier
+Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier 
+
+ 
 
 **Parameters**
 
-*   `(array) $data`
-    : The data from the response.
-*   `(array) $configuration`
-    : The configuration for this action.
+* `(array) $data`
+: The data from the response.  
+* `(array) $configuration`
+: The configuration for this action.  
 
 **Return Values**
 
@@ -76,15 +97,21 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 
 > The resulting data array.
 
+
 <hr />
 
-### ZGWToZDSService::zgwToZdsInformationObjectHandler
+
+### ZGWToZDSService::zgwToZdsInformationObjectHandler  
 
 **Description**
 
 ```php
  zgwToZdsInformationObjectHandler (void)
 ```
+
+ 
+
+ 
 
 **Parameters**
 
@@ -94,9 +121,11 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 
 `void`
 
+
 <hr />
 
-### ZGWToZDSService::zgwToZdsObjectIdentificationHandler
+
+### ZGWToZDSService::zgwToZdsObjectIdentificationHandler  
 
 **Description**
 
@@ -104,14 +133,16 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 public zgwToZdsObjectIdentificationHandler (array $data, array $configuration)
 ```
 
-Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier
+Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier 
+
+ 
 
 **Parameters**
 
-*   `(array) $data`
-    : The data from the response.
-*   `(array) $configuration`
-    : The configuration for this action.
+* `(array) $data`
+: The data from the response.  
+* `(array) $configuration`
+: The configuration for this action.  
 
 **Return Values**
 
@@ -119,4 +150,6 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 
 > The resulting data array.
 
+
 <hr />
+
