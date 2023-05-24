@@ -2,7 +2,7 @@
   "title": "ZgwZaakToZds",
   "$id": "https://zds.nl/mapping/zds.ZgwZaakToZds.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "passTrough": false,
   "mapping": {
     "SOAP-ENV:Body.ns2:zakLk01.ns2:stuurgegevens.ns1:berichtcode": "Lk01",
@@ -33,8 +33,7 @@
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:laatsteBetaaldatum": "laatsteBetaaldatum",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:zaakniveau": "1",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:deelzakenIndicatie": "N",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement.@naam": "sub.emailadres",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement.#": "p.engels@simgroep.nl",
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "[{% for eigenschap in eigenschappen %}{% if eigenschap.waarde is not empty and 'MEEVERHUIZENDE_GEZINSLEDEN' not in eigenschap.naam %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json', eigenschap)|json_encode }}{% endif %}{% endfor %}]",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:isVan.@ns1:entiteittype": "ZAKZKT",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:isVan.@ns1:verwerkingssoort": "T",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:isVan.ns2:gerelateerde.@ns1:entiteittype": "ZKT",
@@ -77,5 +76,7 @@
     "@xmlns:ns3": "http://www.egem.nl/StUF/sector/bg/0310",
     "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
   },
-  "unset": {}
+  "cast": {
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "jsonToArray"
+  }
 }
