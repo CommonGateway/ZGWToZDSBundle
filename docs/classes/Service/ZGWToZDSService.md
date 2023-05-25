@@ -7,7 +7,7 @@
 |[\_\_construct](#zgwtozdsservice__construct)||
 |[zgwToZdsHandler](#zgwtozdsservicezgwtozdshandler)|An example handler that is triggered by an action.|
 |[zgwToZdsIdentificationHandler](#zgwtozdsservicezgwtozdsidentificationhandler)|Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier|
-|[zgwToZdsInformationObjectHandler](#zgwtozdsservicezgwtozdsinformationobjecthandler)||
+|[zgwToZdsInformationObjectHandler](#zgwtozdsservicezgwtozdsinformationobjecthandler)|Translate information objects to Lk01 messages and send them to a source.|
 |[zgwToZdsObjectIdentificationHandler](#zgwtozdsservicezgwtozdsobjectidentificationhandler)|Creates a ZDS Di02 call to the ZDS source, and takes the identification in the respons as case identifier|
 
 ### ZGWToZDSService::\_\_construct
@@ -83,16 +83,23 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 **Description**
 
 ```php
- zgwToZdsInformationObjectHandler (void)
+public zgwToZdsInformationObjectHandler (array $data, array $configuration)
 ```
+
+Translate information objects to Lk01 messages and send them to a source.
 
 **Parameters**
 
-`This function has no parameters.`
+*   `(array) $data`
+    : The data array
+*   `(array) $configuration`
+    : The configuration array
 
 **Return Values**
 
-`void`
+`array`
+
+> The updated data array
 
 <hr />
 
