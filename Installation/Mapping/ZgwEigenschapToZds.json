@@ -1,0 +1,12 @@
+{
+  "title": "ZgwEigenschapToZds",
+  "$id": "https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "ns1:extraElement.@naam": "{{ naam|trans({'TELEFOONNUMMER': 'sub.telefoonnummer', 'EMAILADRES': 'sub.emailadres', 'AANTAL_PERS_NIEUW_ADRES': 'aantalPersonenOpNieuweAdres', 'POSTCODE_NIEUW': 'aoa.postcode', 'HUISNUMMER_NIEUW': 'aoa.huisnummer', 'HUISNUMMERTOEVOEGING_NIEUW': 'aoa.huisnummertoevoeging', 'HUISLETTER_NIEUW': 'aoa.huisletter', 'STRAATNAAM_NIEUW': 'gor.openbareRuimteNaam', 'WOONPLAATS_NIEUW': 'wpl.woonplaatsNaam', 'VERHUISDATUM': 'datumVerhuizing', 'GEMEENTECODE': 'gemeentecode', 'WIJZE_BEWONING': 'wijzeBewoning'},'','en')  }}",
+    "ns1:extraElement.#": "waarde"
+  },
+  "unset": {}
+}
