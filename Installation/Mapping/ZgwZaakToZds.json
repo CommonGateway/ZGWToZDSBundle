@@ -64,9 +64,7 @@
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummer": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummer",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisletter": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisletter",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummertoevoeging": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummertoevoeging",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene.@ns1:entiteittype": "ZAKBTROVR",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene.@ns1:verwerkingssoort": "T",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": "{% set dotArray = [] %}{% for eigenschap in eigenschappen %}{% if'MEEVERHUIZENDE_GEZINSLEDEN' in eigenschap.naam %}{% set dotArray = dotArray|merge({(eigenschap.naam): eigenschap.waarde}) %}{% endif %}{% endfor %}{# {% set object = dotToObject(dotArray) %}[{% for gezinslid in object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwOverigBetrokkeneToZds.mapping.json', gezinslid }}{% endfor %}]#}",
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": "{% set dotArray = [] %}{% for eigenschap in eigenschappen %}{% if'MEEVERHUIZENDE_GEZINSLEDEN' in eigenschap.naam %}{% set dotArray = dotArray|merge({(eigenschap.naam): eigenschap.waarde}) %}{% endif %}{% endfor %}{% set object = dotToObject(dotArray) %}[{% for gezinslid in object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwOverigBetrokkeneToZds.mapping.json', gezinslid)|json_encode }}{% endfor %}]",
     "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
     "@xmlns:ns1": "http://www.egem.nl/StUF/StUF0301",
     "@xmlns:ns2": "http://www.egem.nl/StUF/sector/zkn/0310",
@@ -74,6 +72,7 @@
     "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
   },
   "cast": {
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "jsonToArray"
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "jsonToArray",
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": "jsonToArray"
   }
 }

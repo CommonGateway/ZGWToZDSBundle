@@ -8,7 +8,9 @@
     "ns2:gerelateerde.ns2:natuurlijkPersoon.@ns1:entiteittype": "NPS",
     "ns2:gerelateerde.ns2:natuurlijkPersoon.@ns1:verwerkingssoort": "T",
     "ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:inp&#46;bsn": "BSN",
-    "ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:geslachtsnaam": "ACHTERNAAM"
+    "ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:geslachtsnaam": "ACHTERNAAM",
+    "@ns1:entiteittype": "ZAKBTROVR",
+    "@ns1:verwerkingssoort": "T"
   },
   "unset": {}
 }
