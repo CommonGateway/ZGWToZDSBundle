@@ -2,7 +2,7 @@
   "title": "ZgwZaakToZds",
   "$id": "https://zds.nl/mapping/zds.ZgwZaakToZds.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "passTrough": false,
   "mapping": {
     "SOAP-ENV:Body.ns2:zakLk01.ns2:stuurgegevens.ns1:berichtcode": "Lk01",
@@ -24,7 +24,7 @@
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:identificatie": "identificatie",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:omschrijving": "omschrijving",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:toelichting": "toelichting",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:startdatum": "startdatum",
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:startdatum": "{{ 'now'|date('Ymd') }}",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:registratiedatum": "registratiedatum",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:publicatiedatum": "publicatiedatum",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:einddatumGepland": "einddatumGepland",
@@ -33,7 +33,7 @@
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:laatsteBetaaldatum": "laatsteBetaaldatum",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:zaakniveau": "1",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:deelzakenIndicatie": "N",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "[{% for eigenschap in eigenschappen %}{% if eigenschap.waarde is not empty and 'MEEVERHUIZENDE_GEZINSLEDEN' not in eigenschap.naam %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json', eigenschap)|json_encode }}{% endif %}{% endfor %}]",
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "[{%set index = 0 %}{% for eigenschap in eigenschappen %}{% if eigenschap.waarde is not empty and 'MEEVERHUIZENDE_GEZINSLEDEN' not in eigenschap.naam and eigenschap.naam in ['TELEFOONNUMMER', 'EMAILADRES', 'AANTAL_PERS_NIEUW_ADRES', 'POSTCODE_NIEUW', 'HUISNUMMER_NIEUW', 'HUISNUMMERTOEVOEGING_NIEUW', 'HUISLETTER_NIEUW', 'STRAATNAAM_NIEUW', 'WOONPLAATS_NIEUW', 'VERHUISDATUM', 'GEMEENTECODE', 'WIJZE_BEWONING'] %}{% if not index == 0 %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json', eigenschap)|json_encode }}{% set index = index+1 %}{% endif %}{% endfor %}]",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:isVan.@ns1:entiteittype": "ZAKZKT",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:isVan.@ns1:verwerkingssoort": "T",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:isVan.ns2:gerelateerde.@ns1:entiteittype": "ZKT",
@@ -64,7 +64,7 @@
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummer": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummer",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisletter": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisletter",
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummertoevoeging": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummertoevoeging",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": "{% set dotArray = [] %}{% for eigenschap in eigenschappen %}{% if'MEEVERHUIZENDE_GEZINSLEDEN' in eigenschap.naam %}{% set dotArray = dotArray|merge({(eigenschap.naam): eigenschap.waarde}) %}{% endif %}{% endfor %}{% set object = dotToObject(dotArray) %}[{% for gezinslid in object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwOverigBetrokkeneToZds.mapping.json', gezinslid)|json_encode }}{% endfor %}]",
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": "{% set dotArray = [] %}{% for eigenschap in eigenschappen %}{% if'MEEVERHUIZENDE_GEZINSLEDEN' in eigenschap.naam %}{% set dotArray = dotArray|merge({(eigenschap.naam): eigenschap.waarde}) %}{% endif %}{% endfor %}{% set object = dotToObject(dotArray) %}[{% if object.MEEVERHUIZENDE_GEZINSLEDEN is defined and object.MEEVERHUIZENDE_GEZINSLEDEN is not empty %}{% if 0 in object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID|keys %}{% for gezinslid in object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwOverigBetrokkeneToZds.mapping.json', gezinslid)|json_encode }}{% endfor %}{% else %}{{ map('https://zds.nl/mapping/zds.ZgwOverigBetrokkeneToZds.mapping.json', object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID)|json_encode }}{% endif %}{% endif %}]",
     "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
     "@xmlns:ns1": "http://www.egem.nl/StUF/StUF0301",
     "@xmlns:ns2": "http://www.egem.nl/StUF/sector/zkn/0310",
@@ -73,6 +73,6 @@
   },
   "cast": {
     "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns1:extraElementen.ns1:extraElement": "jsonToArray",
-    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": "jsonToArray"
+    "SOAP-ENV:Body.ns2:zakLk01.ns2:object.ns2:heeftAlsOverigBetrokkene": ["jsonToArray", "unsetIfValue=="]
   }
 }
