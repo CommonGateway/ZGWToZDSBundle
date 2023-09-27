@@ -40,10 +40,10 @@ An example handler that is triggered by an action.
 
 **Parameters**
 
-*   `(array) $data`
-    : The data array
-*   `(array) $configuration`
-    : The configuration array
+* `(array) $data`
+  : The data array
+* `(array) $configuration`
+  : The configuration array
 
 **Return Values**
 
@@ -65,10 +65,10 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 
 **Parameters**
 
-*   `(array) $data`
-    : The data from the response.
-*   `(array) $configuration`
-    : The configuration for this action.
+* `(array) $data`
+  : The data from the response.
+* `(array) $configuration`
+  : The configuration for this action.
 
 **Return Values**
 
@@ -90,10 +90,10 @@ Translate information objects to Lk01 messages and send them to a source.
 
 **Parameters**
 
-*   `(array) $data`
-    : The data array
-*   `(array) $configuration`
-    : The configuration array
+* `(array) $data`
+  : The data array
+* `(array) $configuration`
+  : The configuration array
 
 **Return Values**
 
@@ -115,10 +115,10 @@ Creates a ZDS Di02 call to the ZDS source, and takes the identification in the r
 
 **Parameters**
 
-*   `(array) $data`
-    : The data from the response.
-*   `(array) $configuration`
-    : The configuration for this action.
+* `(array) $data`
+  : The data from the response.
+* `(array) $configuration`
+  : The configuration for this action.
 
 **Return Values**
 
