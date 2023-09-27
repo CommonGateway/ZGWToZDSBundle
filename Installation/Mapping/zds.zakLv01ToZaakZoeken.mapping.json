@@ -1,0 +1,15 @@
+{
+  "title": "Lv01ToZaakZoeken",
+  "$id": "https://zds.nl/mapping/zds.zakLv01ToZaakZoeken.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "rol__betrokkeneIdentificatie__natuurlijkPersoon__inpBsn": "SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:identificatie",
+    "identificatie": "SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:identificatie"
+  },
+  "cast": {
+    "rol__betrokkeneIdentificatie__natuurlijkPersoon__inpBsn": "unsetIfValue==SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:identificatie",
+    "identificatie": "unsetIfValue==SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:identificatie"
+  }
+}
