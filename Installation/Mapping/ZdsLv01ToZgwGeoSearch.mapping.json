@@ -1,0 +1,18 @@
+{
+  "$id": "https://zds.vng.nl/mappings/zdsLv01ToZGWGeoSearch.mapping.json",
+  "version": "0.0.1",
+  "title": "ZDS Lv01 to ZGW GeoSearch",
+  "description": "",
+  "mapping": {
+    "rol__betrokkeneIdentificatie__natuurlijkPersoon__inpBsn": "SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:identificatie",
+    "identificatie": "SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:identificatie"
+  },
+  "unset": [],
+  "cast": {
+    "rol__betrokkeneIdentificatie__natuurlijkPersoon__inpBsn": "unsetIfValue==SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:heeftAlsInitiator.ns2:gerelateerde.ns2:identificatie",
+    "identificatie": "unsetIfValue==SOAP-ENV:Body.ns2:zakLv01.ns2:gelijk.ns2:identificatie"
+  },
+  "passTrough": false,
+  "dateCreated": "2024-02-15T09:48:17+00:00",
+  "dateModified": "2024-02-15T09:48:17+00:00"
+}
