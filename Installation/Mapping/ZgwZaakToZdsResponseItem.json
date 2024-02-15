@@ -28,32 +28,10 @@
     "ZKN:object.ZKN:isVan.ZKN:gerelateerde.@StUF:verwerkingssoort": "T",
     "ZKN:object.ZKN:isVan.ZKN:gerelateerde.ZKN:omschrijving": "Verhuizing doorgeven",
     "ZKN:object.ZKN:isVan.ZKN:gerelateerde.ZKN:code": "VERDOOR",
-    "ZKN:object.ZKN:heeftAlsInitiator.@StUF:entiteittype": "ZAKBTRINI",
-    "ZKN:object.ZKN:heeftAlsInitiator.@StUF:verwerkingssoort": "T",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.@StUF:entiteittype": "NPS",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.@StUF:verwerkingssoort": "T",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:inp&#46;bsn": "rollen.0.betrokkeneIdentificatie.inpBsn",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:authentiek.@StUF:metagegeven": "true",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:authentiek": "J",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:geslachtsnaam": "rollen.0.betrokkeneIdentificatie.geslachtsnaam",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:voorvoegselGeslachtsnaam.@xsi:nil": "true",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:voorvoegselGeslachtsnaam": "rollen.0.betrokkeneIdentificatie.voorvoegselGeslachtsnaam",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:voorletters.@xsi:nil": "true",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:voorletters": "rollen.0.betrokkeneIdentificatie.voorletters",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:voornamen": "rollen.0.betrokkeneIdentificatie.voornamen",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:geslachtsaanduiding.@xsi:nil": "true",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:geslachtsaanduiding": "rollen.0.betrokkeneIdentificatie.geslachtsaanduiding",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:geboortedatum": "rollen.0.betrokkeneIdentificatie.geboortedatum",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:wpl&#46;woonplaatsNaam": "rollen.0.betrokkeneIdentificatie.verblijfsadres.wplWoonplaatsNaam",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:gor&#46;openbareRuimteNaam": "rollen.0.betrokkeneIdentificatie.verblijfsadres.gorOpenbareRuimteNaam",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:gor&#46;straatnaam.@xsi:nil": "true",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;postcode": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaPostcode",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummer": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummer",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisletter": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisletter",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummertoevoeging": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummertoevoeging"
+    "ZKN:object.ZKN:heeftAlsInitiator": "{% if rollen.0 is defined %}{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItemInitiator.mapping.json\", rollen.0)|json_encode }}{% else %}\"\"{% endif %}"
   },
   "cast": {
     "ZKN:object.ns1:extraElementen.ns1:extraElement": "jsonToArray",
-    "ZKN:object.ZKN:heeftAlsOverigBetrokkene": "jsonToArray"
+    "ZKN:object.ZKN:heeftAlsInitiator": ["jsonToArray", "unsetIfValue=="]
   }
 }
