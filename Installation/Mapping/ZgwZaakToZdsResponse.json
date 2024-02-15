@@ -1,0 +1,32 @@
+{
+  "title": "ZgwZaakToZdsResponse",
+  "$id": "https://zds.nl/mapping/zds.ZgwZaakToZdsResponse.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:berichtcode": "La01",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:zender.ns1:organisatie": "SIM",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:zender.ns1:applicatie": "SIMsite",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:zender.ns1:administratie": "",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:zender.ns1:gebruiker": "",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:ontvanger.ns1:organisatie": "1892",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:ontvanger.ns1:applicatie": "Liber",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:ontvanger.ns1:administratie": "",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:ontvanger.ns1:gebruiker": "",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:referentienummer": "identificatie",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:tijdstipBericht": "{{ 'now'|date('YmdHisv') }}",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:entiteittype": "ZAK",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:parameters.ns1:mutatiesoort": "T",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:parameters.ns1:indicatorOvername": "V",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord": "{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItem.mapping.json\", results, true)|json_encode }}",
+    "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+    "@xmlns:ns1": "http://www.egem.nl/StUF/StUF0301",
+    "@xmlns:ZKN": "http://www.egem.nl/StUF/sector/zkn/0310",
+    "@xmlns:ns3": "http://www.egem.nl/StUF/sector/bg/0310",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+  },
+  "cast": {
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord": ["jsonToArray"]
+  }
+}

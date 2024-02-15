@@ -21,6 +21,11 @@
         "body": {
           "mapping": "https://zds.vng.nl/mappings/zdsLv01ToZGWGeoSearch.mapping.json"
         }
+      },
+      "in": {
+        "body": {
+          "mapping": "https://zds.nl/mapping/zds.ZgwZaakToZdsResponse.mapping.json"
+        }
       }
     }
   }
