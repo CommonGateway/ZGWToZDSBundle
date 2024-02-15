@@ -20,7 +20,7 @@
     "ZKN:object.ZKN:laatsteBetaaldatum": "laatsteBetaaldatum",
     "ZKN:object.ZKN:zaakniveau": "1",
     "ZKN:object.ZKN:deelzakenIndicatie": "N",
-    "ZKN:object.ns1:extraElementen.ns1:extraElement": "[{% for eigenschap in eigenschappen %}{% if eigenschap.waarde is not empty and 'MEEVERHUIZENDE_GEZINSLEDEN' not in eigenschap.naam %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json', eigenschap)|json_encode }}{% endif %}{% endfor %}]",
+    "ZKN:object.ns1:extraElementen.ns1:extraElement": "[{% for eigenschap in eigenschappen %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json', eigenschap)|json_encode }}{% endfor %}]",
     "ZKN:object.ZKN:isVan.@StUF:entiteittype": "ZAKZKT",
     "ZKN:object.ZKN:isVan.@StUF:verwerkingssoort": "T",
     "ZKN:object.ZKN:isVan.ZKN:gerelateerde.@StUF:entiteittype": "ZKT",
@@ -50,8 +50,7 @@
     "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;postcode": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaPostcode",
     "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummer": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummer",
     "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisletter": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisletter",
-    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummertoevoeging": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummertoevoeging",
-    "ZKN:object.ZKN:heeftAlsOverigBetrokkene": "{% set dotArray = [] %}{% for eigenschap in eigenschappen %}{% if'MEEVERHUIZENDE_GEZINSLEDEN' in eigenschap.naam %}{% set dotArray = dotArray|merge({(eigenschap.naam): eigenschap.waarde}) %}{% endif %}{% endfor %}{% set object = dotToObject(dotArray) %}[{% for gezinslid in object.MEEVERHUIZENDE_GEZINSLEDEN.MEEVERHUIZEND_GEZINSLID %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwOverigBetrokkeneToZds.mapping.json', gezinslid)|json_encode }}{% endfor %}]"
+    "ZKN:object.ZKN:heeftAlsInitiator.ZKN:gerelateerde.ZKN:natuurlijkPersoon.ns3:verblijfsadres.ns3:aoa&#46;huisnummertoevoeging": "rollen.0.betrokkeneIdentificatie.verblijfsadres.aoaHuisnummertoevoeging"
   },
   "cast": {
     "ZKN:object.ns1:extraElementen.ns1:extraElement": "jsonToArray",

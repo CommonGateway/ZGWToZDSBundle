@@ -16,7 +16,7 @@
     "verify": false
   },
   "endpointsConfig": {
-    "zaken/_zoek": {
+    "/zaken/_zoek": {
       "out": {
         "body": {
           "mapping": "https://zds.vng.nl/mappings/zdsLv01ToZGWGeoSearch.mapping.json"
