@@ -330,6 +330,22 @@ class ZGWToZDSService
         return $data;
 
     }//end zgwToZdsInformationObjectHandler()
+    
+    /**
+     * Does an xmlEncode on the response data. (temporary solution)
+     *
+     * @param array $data The data array.
+     * @param array $configuration The configuration array.
+     *
+     * @return array The updated data array.
+     */
+    public function zgwToZdsXmlEncodeHandler(array $data, array $configuration): array
+    {
+//        $encoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
+//        $message = $encoder->encode($data['response'], 'xml');
+        
+        return $data;
+    }
 
 
 }//end class

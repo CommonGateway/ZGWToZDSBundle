@@ -8,6 +8,9 @@
                 "path": "stuf/zds/requests",
                 "methods": [
                     "POST"
+                ],
+                "throws": [
+                    "zgwToZds.xmlEncode"
                 ]
             }
         ]
