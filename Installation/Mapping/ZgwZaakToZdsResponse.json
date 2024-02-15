@@ -19,7 +19,7 @@
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.ns1:entiteittype": "ZAK",
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:parameters.ns1:mutatiesoort": "T",
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:parameters.ns1:indicatorOvername": "V",
-    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord": "{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItem.mapping.json\", results, true)|json_encode }}",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord.ZKN:object": "{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItem.mapping.json\", results, true)|json_encode }}",
     "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
     "@xmlns:ns1": "http://www.egem.nl/StUF/StUF0301",
     "@xmlns:ZKN": "http://www.egem.nl/StUF/sector/zkn/0310",
@@ -27,6 +27,6 @@
     "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
   },
   "cast": {
-    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord": ["jsonToArray"]
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord.ZKN:object": ["jsonToArray"]
   }
 }
