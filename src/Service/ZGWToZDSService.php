@@ -342,10 +342,16 @@ class ZGWToZDSService
      */
     public function zgwToZdsXmlEncodeHandler(array $data, array $configuration): array
     {
-        // $encoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
-        // $message = $encoder->encode($data['response'], 'xml');
+        $response = $data['response'];
+        $responseBody = json_decode($response->getContent(), true);
+        
+        $encoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
+        $responseBody = $encoder->encode($responseBody, 'xml');
+        
+        $data['response'] = new Response($responseBody, $response->getStatusCode(), ['content-type' => 'text/xml']);
+        
         return $data;
-
+        
     }//end zgwToZdsXmlEncodeHandler()
 
 
