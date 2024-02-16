@@ -1,5 +1,6 @@
 {
   "$id": "https://zds.vng.nl/mappings/zdsLv01ToZGWGeoSearch.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
   "version": "0.0.1",
   "title": "ZDS Lv01 to ZGW GeoSearch",
   "description": "",
