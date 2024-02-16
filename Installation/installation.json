@@ -1,5 +1,20 @@
 {
     "installationService": "CommonGateway\\ZGWToZDSBundle\\Service\\InstallationService",
+    "endpoints": {
+        "sources": [
+            {
+                "name": "ZDS Request Endpoint",
+                "reference": "https://zds.vng.nl/endpoints/zgw.zrc.source.json",
+                "path": "stuf/zds/requests",
+                "methods": [
+                    "POST"
+                ],
+                "throws": [
+                    "zgwToZds.xmlEncode"
+                ]
+            }
+        ]
+    },
     "actions": {
         "handlers": [
             {

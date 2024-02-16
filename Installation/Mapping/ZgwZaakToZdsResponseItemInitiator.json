@@ -1,0 +1,32 @@
+{
+  "title": "ZgwZaakToZdsResponseItemInitiator",
+  "$id": "https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItemInitiator.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "@StUF:entiteittype": "ZAKBTRINI",
+    "@StUF:verwerkingssoort": "T",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.@StUF:entiteittype": "NPS",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.@StUF:verwerkingssoort": "T",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:inp&#46;bsn": "betrokkeneIdentificatie.inpBsn",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:authentiek.@StUF:metagegeven": "true",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:authentiek": "J",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:geslachtsnaam": "betrokkeneIdentificatie.geslachtsnaam",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:voorvoegselGeslachtsnaam.@xsi:nil": "true",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:voorvoegselGeslachtsnaam": "betrokkeneIdentificatie.voorvoegselGeslachtsnaam",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:voorletters.@xsi:nil": "true",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:voorletters": "betrokkeneIdentificatie.voorletters",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:voornamen": "betrokkeneIdentificatie.voornamen",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:geslachtsaanduiding.@xsi:nil": "true",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:geslachtsaanduiding": "betrokkeneIdentificatie.geslachtsaanduiding",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:geboortedatum": "betrokkeneIdentificatie.geboortedatum",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:wpl&#46;woonplaatsNaam": "betrokkeneIdentificatie.verblijfsadres.wplWoonplaatsNaam",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:gor&#46;openbareRuimteNaam": "betrokkeneIdentificatie.verblijfsadres.gorOpenbareRuimteNaam",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:gor&#46;straatnaam.@xsi:nil": "true",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:aoa&#46;postcode": "betrokkeneIdentificatie.verblijfsadres.aoaPostcode",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:aoa&#46;huisnummer": "betrokkeneIdentificatie.verblijfsadres.aoaHuisnummer",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:aoa&#46;huisletter": "betrokkeneIdentificatie.verblijfsadres.aoaHuisletter",
+    "ZKN:gerelateerde.ZKN:natuurlijkPersoon.BG:verblijfsadres.BG:aoa&#46;huisnummertoevoeging": "betrokkeneIdentificatie.verblijfsadres.aoaHuisnummertoevoeging"
+  }
+}
