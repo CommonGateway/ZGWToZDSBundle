@@ -2,8 +2,10 @@
 
 namespace CommonGateway\ZGWToZDSBundle\Service;
 
+use CommonGateway\CoreBundle\Service\CacheService;
 use CommonGateway\CoreBundle\Service\CallService;
 use CommonGateway\CoreBundle\Service\GatewayResourceService;
+use CommonGateway\CoreBundle\Service\MappingService;
 use CommonGateway\CoreBundle\Service\RequestService;
 use DOMDocument;
 use DOMXPath;
@@ -17,6 +19,8 @@ class ZdsToZgwService
         private readonly GatewayResourceService $resourceService,
         private readonly CallService $callService,
         private readonly RequestService $requestService,
+        private readonly CacheService $cacheService,
+        private readonly MappingService $mappingService
     ) {
 
     }//end __construct()
@@ -24,34 +28,52 @@ class ZdsToZgwService
 
     private function getObjects(string $schema): array
     {
-        // @TODO fetch (all) objects of type $schema
-        return [];
-
+        return $this->cacheService->searchObjectsNew([], [$schema])['results'];
     }//end getObjects()
 
 
     private function removeNamespaces($xml)
     {
-        $doc = new DOMDocument();
+        $doc = new \DOMDocument();
         $doc->loadXML($xml);
 
-        // Remove all namespace prefixes
-        $xpath = new DOMXPath($doc);
-        foreach ($xpath->query('//*') as $node) {
-            $node->removeAttributeNS($node->namespaceURI, $node->prefix);
+        $newDoc = new \DOMDocument();
+        $newDoc->appendChild($this->copyWithoutNamespace($doc->documentElement, $newDoc));
+
+        return $newDoc->saveXML();
+    }
+
+// Helper function to copy elements without namespaces
+    private function copyWithoutNamespace(\DOMNode $node, \DOMDocument $newDoc)
+    {
+        // Create a new element without namespace
+        $newNode = $newDoc->createElement($node->localName);
+
+        // Copy attributes
+        foreach ($node->attributes ?? [] as $attr) {
+            $newNode->setAttribute($attr->name, $attr->value);
         }
 
-        return $doc->saveXML();
+        // Recursively copy child nodes
+        foreach ($node->childNodes as $child) {
+            if ($child instanceof \DOMText) {
+                $newNode->appendChild($newDoc->createTextNode($child->nodeValue));
+            } elseif ($child instanceof \DOMElement) {
+                $newNode->appendChild($this->copyWithoutNamespace($child, $newDoc));
+            }
+        }
 
-    }//end removeNamespaces()
+        return $newNode;
+    }
 
 
     public function translateZdsToZgwZaak(array $data, array $configuration): array
     {
+
         $cleanXml = $this->removeNamespaces($data['crude_body']);
 
-        $mapping = $this->resourceService->getMapping($configuration['mapping']);
-        $source  = $this->resourceService->getSource($configuration['source']);
+        $mapping = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
+        $source  = $this->resourceService->getSource($configuration['source'], 'common-gateway/zgw-to-zds-bundle');
 
         // Decode using XmlEncoder
         $encoder = new XmlEncoder();
@@ -61,7 +83,7 @@ class ZdsToZgwService
         $array['_eigenschappen'] = $this->getObjects($configuration['eigenschapSchema']);
         $array['_roltypen']      = $this->getObjects($configuration['roltypeSchema']);
 
-        $zaak = $this->mappingService->map($array, $mapping);
+        $zaak = $this->mappingService->mapping($mapping, $array);
 
         if (isset($zaak['_headers']) === true) {
             $data['headers'] = array_merge($zaak['_headers'], $data['headers']);

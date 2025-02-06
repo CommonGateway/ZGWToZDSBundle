@@ -331,6 +331,13 @@ class ZGWToZDSService
 
     }//end zgwToZdsInformationObjectHandler()
 
+    public function addDocuments(array $zaak, array $data): array
+    {
+        var_dump($zaak, array_keys($data));
+
+        return $zaak;
+    }
+
 
     /**
      * Does an xmlEncode on the response data. (temporary solution)
@@ -343,7 +350,11 @@ class ZGWToZDSService
     public function zgwToZdsXmlEncodeHandler(array $data, array $configuration): array
     {
         $response     = $data['response'];
-        $responseBody = json_decode($response->getContent(), true);
+        $responseBody = \Safe\json_decode($response->getContent(), true);
+
+        if(count($responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord']) === 1) {
+            $responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord'][0] = $this->addDocuments($responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord'][0], $data);
+        }
 
         $encoder      = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
         $responseBody = $encoder->encode($responseBody, 'xml');
