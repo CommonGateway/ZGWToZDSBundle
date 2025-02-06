@@ -331,12 +331,14 @@ class ZGWToZDSService
 
     }//end zgwToZdsInformationObjectHandler()
 
+
     public function addDocuments(array $zaak, array $data): array
     {
         var_dump($zaak, array_keys($data));
 
         return $zaak;
-    }
+
+    }//end addDocuments()
 
 
     /**
@@ -352,7 +354,7 @@ class ZGWToZDSService
         $response     = $data['response'];
         $responseBody = \Safe\json_decode($response->getContent(), true);
 
-        if(count($responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord']) === 1) {
+        if (count($responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord']) === 1) {
             $responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord'][0] = $this->addDocuments($responseBody['SOAP-ENV:Body']['ZKN:zakLa01']['ZKN:antwoord'][0], $data);
         }
 

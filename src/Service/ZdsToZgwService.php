@@ -29,6 +29,7 @@ class ZdsToZgwService
     private function getObjects(string $schema): array
     {
         return $this->cacheService->searchObjectsNew([], [$schema])['results'];
+
     }//end getObjects()
 
 
@@ -41,16 +42,18 @@ class ZdsToZgwService
         $newDoc->appendChild($this->copyWithoutNamespace($doc->documentElement, $newDoc));
 
         return $newDoc->saveXML();
-    }
 
-// Helper function to copy elements without namespaces
+    }//end removeNamespaces()
+
+
+    // Helper function to copy elements without namespaces
     private function copyWithoutNamespace(\DOMNode $node, \DOMDocument $newDoc)
     {
         // Create a new element without namespace
         $newNode = $newDoc->createElement($node->localName);
 
         // Copy attributes
-        foreach ($node->attributes ?? [] as $attr) {
+        foreach (($node->attributes ?? []) as $attr) {
             $newNode->setAttribute($attr->name, $attr->value);
         }
 
@@ -58,13 +61,14 @@ class ZdsToZgwService
         foreach ($node->childNodes as $child) {
             if ($child instanceof \DOMText) {
                 $newNode->appendChild($newDoc->createTextNode($child->nodeValue));
-            } elseif ($child instanceof \DOMElement) {
+            } else if ($child instanceof \DOMElement) {
                 $newNode->appendChild($this->copyWithoutNamespace($child, $newDoc));
             }
         }
 
         return $newNode;
-    }
+
+    }//end copyWithoutNamespace()
 
 
     public function translateZdsToZgwZaak(array $data, array $configuration): array
