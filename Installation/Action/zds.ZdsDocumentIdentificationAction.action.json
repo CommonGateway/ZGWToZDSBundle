@@ -1,0 +1,24 @@
+{
+  "title": "ZdsDocumentIdentificationAction",
+  "$id": "https://zds.nl/action/zds.ZdsDocumentIdentificationAction.action.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
+  "version": "0.0.2",
+  "listens": [
+    "zds.inbound"
+  ],
+  "throws": [],
+  "conditions": {
+    "!!": [
+      {
+        "var": "body.SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02"
+      },
+      []
+    ]
+  },
+  "class": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZdsIdHandler",
+  "configuration": {
+    "mapping": "https://zds.nl/mapping/DocumentDi02ToDu02.mapping.json"
+  },
+  "isLockable": false,
+  "isEnabled": true
+}

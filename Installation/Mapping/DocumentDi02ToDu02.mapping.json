@@ -1,0 +1,21 @@
+{
+  "title": "DocumentDi02ToDu02",
+  "$id": "https://zds.nl/mapping/DocumentDi02ToDu02.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.6",
+  "passTrough": false,
+  "mapping": {
+    "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.@xmlns:StUF": "http://www.egem.nl/StUF/StUF0301",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.@xmlns:ZKN": "http://www.egem.nl/StUF/sector/zkn/0310",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:stuurgegevens.StUF:berichtcode": "Du02",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:stuurgegevens.StUF:zender.StUF:applicatie": "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:ontvanger.ns1:applicatie",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:stuurgegevens.StUF:ontvanger.StUF:applicatie": "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:zender.ns1:applicatie",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:stuurgegevens.StUF:referentienummer": "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:stuurgegevens.StUF:tijdstipBericht": "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:tijdstipBericht",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:stuurgegevens.StUF:crossRefnummer": "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:document.@StUF:functie": "entiteit",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:document.@StUF:entiteittype": "EDC",
+    "SOAP-ENV:Body.ZKN:genereerDocumentIdentificatie_Du02.ZKN:document.ZKN:identificatie": "SOAP-ENV:Body.ns2:genereerDocumentIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer"
+  }
+}

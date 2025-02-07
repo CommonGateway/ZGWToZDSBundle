@@ -1,0 +1,25 @@
+{
+  "title": "ZdsToZgwRol",
+  "$id": "https://zds.nl/mapping/zds.ZdsToZgwDocument.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.4",
+  "passTrough": false,
+  "mapping": {
+    "identificatie": "{% if Body.edcLk01.object.identificatie is iterable %}{{ Body.edcLk01.object.identificatie['#'] }}{% else %}{{ Body.edcLk01.object.identificatie }}{% endif %}",
+    "bronorganisatie": "999990674",
+    "creatiedatum": "{% if Body.edcLk01.object.creatiedatum is iterable %}{{ Body.edcLk01.object.creatiedatum['#'] }}{% else %}{{ Body.edcLk01.object.creatiedatum }}{% endif %}",
+    "titel": "{% if Body.edcLk01.object.titel is iterable %}{{ Body.edcLk01.object.titel['#'] }}{% else %}{{ Body.edcLk01.object.titel }}{% endif %}",
+    "beschrijving": "{% if Body.edcLk01.object.beschrijving is iterable %}{{ Body.edcLk01.object.beschrijving['#'] }}{% else %}{{ Body.edcLk01.object.beschrijving }}{% endif %}",
+    "vertrouwelijkheidaanduiding": "zaakvertrouwelijk",
+    "verantwoordelijkeOrganisatie": "9999990674",
+    "auteur": "{% if Body.edcLk01.object.auteur is iterable %}{{ Body.edcLk01.object.auteur['#'] }}{% else %}{{ Body.edcLk01.object.auteur }}{% endif %}",
+    "formaat": "{% if Body.edcLk01.object.formaat is iterable %}{{ Body.edcLk01.object.formaat['#'] }}{% else %}{{ Body.edcLk01.object.formaat }}{% endif %}",
+    "taal": "{% if Body.edcLk01.object.taal is iterable %}{{ Body.edcLk01.object.taal['#'] }}{% else %}{{ Body.edcLk01.object.taal }}{% endif %}",
+    "bestandsnaam": "Body.edcLk01.object.inhoud.@bestandsnaam",
+    "inhoud": "Body.edcLk01.object.inhoud.#",
+    "documenttype": "{% set filteredDocumenttypen = _documenttypen|filter(v => v.omschrijving == Body.edcLk01.object['dct&#46;omschrijving'])|filter(v => v.beginGeldigheid < 'now'|date)|filter(v => v.eindeGeldigheid is null or v.eindeGeldigheid|date > 'now'|date)%}{{ filteredDocumenttypen|column('url')|first }}"
+  },
+  "cast": {
+
+  }
+}

@@ -1,68 +1,70 @@
 {
-    "installationService": "CommonGateway\\ZGWToZDSBundle\\Service\\InstallationService",
-    "endpoints": {
-        "sources": [
-            {
-                "name": "ZDS Request Endpoint",
-                "reference": "https://zds.vng.nl/endpoints/zgw.zrc.source.json",
-                "path": "stuf/zds/requests",
-                "methods": [
-                    "POST"
-                ],
-                "throws": [
-                    "zgwToZds.xmlEncode"
-                ]
-            }
+  "installationService": "CommonGateway\\ZGWToZDSBundle\\Service\\InstallationService",
+  "endpoints": {
+    "sources": [
+      {
+        "name": "ZDS Request Endpoint",
+        "reference": "https://zds.vng.nl/endpoints/zgw.zrc.source.json",
+        "path": "stuf/zds",
+        "methods": [
+          "POST"
+        ],
+        "throws": [
+          "zds.inbound"
         ]
-    },
-    "actions": {
-        "handlers": [
-            {
-                "reference": "https://zds.nlActionHandler/ZgwToZdsIdentificationAction.Action.json",
-                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsIdentificationHandler",
-                "listens": [
-                  "simxml.zaak.created",
-                  "zrc.zaak.created"
-                ],
-                "version": "0.0.1",
-                "configuration": {
-                  "endpoint": "/VrijeBerichten",
-                  "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02"
-                }
-            },
-            {
-              "reference": "https://zds.nl/action/hp.ZGWZaakToZDSAction.action.json",
-              "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZGWToZDSHandler",
-              "listens": ["zrc.zaak.to.zds"]
-            },
-            {
-                "reference": "https://zds.nlActionHandler/ZgwToZdsObjectIdentificationAction.Action.json",
-                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsObjectIdentificationHandler",
-                "listens": [
-                    "simxml.document.created",
-                    "zrc.document.created"
-                ],
-                "version": "0.0.1",
-                "configuration": {
-                    "endpoint": "/VrijeBerichten",
-                    "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02"
-                },
-                "throws": [
-                    "zds.documentId.created"
-                ]
-            },
-            {
-                "reference": "https://zds.nlActionHandler/ZgwToZdsInformationObjectAction.Action.json",
-                "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsInformationObjectHandler",
-                "listens": [
-                    "zds.documentId.created"
-                ],
-                "version": "0.0.1",
-                "configuration": {
-                    "endpoint": "/OntvangAsynchroon",
-                    "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/maakZaakdocument_Lk01"
-                }
-            }
+      }
+    ]
+  },
+  "actions": {
+    "handlers": [
+      {
+        "reference": "https://zds.nlActionHandler/ZgwToZdsIdentificationAction.Action.json",
+        "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsIdentificationHandler",
+        "listens": [
+          "simxml.zaak.created",
+          "zrc.zaak.created"
+        ],
+        "version": "0.0.1",
+        "configuration": {
+          "endpoint": "/VrijeBerichten",
+          "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerZaakIdentificatie_Di02"
+        }
+      },
+      {
+        "reference": "https://zds.nl/action/hp.ZDStoZGWZaakAction.action.json",
+        "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZGWToZDSHandler",
+        "listens": [
+          "zds.to.zgw.zaak"
         ]
-    }
+      },
+      {
+        "reference": "https://zds.nlActionHandler/ZgwToZdsObjectIdentificationAction.Action.json",
+        "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsObjectIdentificationHandler",
+        "listens": [
+          "simxml.document.created",
+          "zrc.document.created"
+        ],
+        "version": "0.0.1",
+        "configuration": {
+          "endpoint": "/VrijeBerichten",
+          "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/genereerDocumentIdentificatie_Di02"
+        },
+        "throws": [
+          "zds.documentId.created"
+        ]
+      },
+      {
+        "reference": "https://zds.nlActionHandler/ZgwToZdsInformationObjectAction.Action.json",
+        "actionHandler": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZgwToZdsInformationObjectHandler",
+        "listens": [
+          "zds.documentId.created"
+        ],
+        "version": "0.0.1",
+        "configuration": {
+          "endpoint": "/OntvangAsynchroon",
+          "SOAPaction": "http://www.egem.nl/StUF/sector/zkn/0310/maakZaakdocument_Lk01"
+        }
+      }
+    ]
+  }
 }

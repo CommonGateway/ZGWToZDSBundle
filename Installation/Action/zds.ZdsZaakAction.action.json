@@ -1,0 +1,27 @@
+{
+  "title": "ZdsZaakAction",
+  "$id": "https://zds.nl/action/zds.ZdsZaakAction.action.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
+  "version": "0.0.3",
+  "listens": [
+    "zds.inbound"
+  ],
+  "throws": ["zds.zaak.created"],
+  "conditions": {
+    "!!": [
+      {"var": "body.SOAP-ENV:Body.ns2:zakLk01"},
+      []
+    ]
+  },
+  "class": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZdsToZgwZaakHandler",
+  "configuration": {
+    "mapping": "https://zds.nl/mapping/zds.ZdsToZgwRol.mapping.json",
+    "source": "https://zds.vng.nl/endpoints/zgw.zrc.source.json",
+    "zaaktypeSchema": "https://vng.opencatalogi.nl/schemas/ztc.zaakType.schema.json",
+    "eigenschapSchema": "https://vng.opencatalogi.nl/schemas/ztc.eigenschap.schema.json",
+    "roltypeSchema": "https://vng.opencatalogi.nl/schemas/ztc.rolType.schema.json",
+    "outMapping": "https://zds.nl/mapping/RolToBv03.mapping.json"
+  },
+  "isLockable": false,
+  "isEnabled": true
+}

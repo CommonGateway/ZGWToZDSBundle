@@ -1,0 +1,23 @@
+{
+  "title": "ZdsDocumentAction",
+  "$id": "https://zds.nl/action/zds.ZdsDocumentAction.action.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
+  "version": "0.0.4",
+  "listens": [
+    "zds.inbound"
+  ],
+  "throws": ["vrijbrp.document.created"],
+  "conditions": {
+    "!!": [
+      {"var": "body.SOAP-ENV:Body.ns2:edcLk01"},
+      []
+    ]
+  },
+  "class": "CommonGateway\\ZGWToZDSBundle\\ActionHandler\\ZdsToZgwDocumentHandler",
+  "configuration": {
+    "mapping": "https://zds.nl/mapping/zds.ZdsToZgwDocument.mapping.json",
+    "documenttypeSchema": "https://vng.opencatalogi.nl/schemas/ztc.informatieObjectType.schema.json"
+  },
+  "isLockable": false,
+  "isEnabled": true
+}
