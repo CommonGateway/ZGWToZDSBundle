@@ -113,6 +113,7 @@ class ZdsToZgwService
 
         $data['crude_body'] = json_encode($zaak);
 
+        $data['path']['{route}'] = ltrim($configuration['path'], '/');
         $response = json_decode($this->requestService->proxyHandler($data, [], $source, $data['endpoint']->getProxyOverrulesAuthentication())->getContent(), true);
 
         $data['response'] = $this->createResponse($this->mappingService->mapping($outMapping, $response), 200);
@@ -126,43 +127,43 @@ class ZdsToZgwService
     {
         $cleanXml = $this->removeNamespaces($data['crude_body']);
 
-        $mapping = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
-//        $source  = $this->resourceService->getSource($configuration['source']);
+        $mapping    = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
+        $source     = $this->resourceService->getSource($configuration['source'], 'common-gateway/zgw-to-zds-bundle');
+        $outMapping = $this->resourceService->getMapping($configuration['outMapping'], 'common-gateway/zgw-to-zds-bundle');
 
         // Decode using XmlEncoder
         $encoder = new XmlEncoder();
         $array   = $encoder->decode($cleanXml, 'xml');
 
 
-        var_dump($array);
 
-//        $zaakInfoObjectMapping = $this->resourceService->getMapping($configuration['zaakInformatieObjectMapping']);
-//        $zaakSource            = $this->resourceService->getSource($configuration['zaakSource']);
+        $zaakInfoObjectMapping = $this->resourceService->getMapping($configuration['zaakInformatieObjectMapping'], 'common-gateway/zgw-to-zds-bundle');
+        $zaakSource            = $this->resourceService->getSource($configuration['zaakSource'], 'common-gateway/zgw-to-zds-bundle');
 
         $array['_documenttypen'] = $this->getObjects($configuration['documenttypeSchema']);
 
 
         $document = $this->mappingService->mapping($mapping, $array);
 
-        var_dump($document);
-        die;
 
         $data['crude_body'] = json_encode($document);
+        $data['path']['{route}'] =ltrim($configuration['documentPath'], '/');
 
-        // $response = $this->requestService->proxyHandler($data, [], $source, $data['endpoint']->getProxyOverrulesAuthentication());
         $response = $this->requestService->proxyHandler($data, [], $source, $data['endpoint']->getProxyOverrulesAuthentication());
 
         $document = json_decode($response->getContent(), true);
 
         $array['_document'] = $document;
-        $array['_zaak']     = $this->callService->decodeBody($this->callService->call($zaakSource, '/zaken', 'GET', ['query' => ['identificatie' => $array['TODO_GET_IDENTIFICATION']]]));
+        $array['_zaak']     = $this->callService->decodeResponse($zaakSource, $this->callService->call($zaakSource, '/'. ltrim($configuration['zaakPath'], '/'), 'GET', ['query' => ['identificatie' => $array['Body']['edcLk01']['object']['isRelevantVoor']['gerelateerde']['identificatie']]]))['results'][0];
 
-        $caseDocument = $this->mappingService->map($array, $zaakInfoObjectMapping);
+        $caseDocument = $this->mappingService->mapping($zaakInfoObjectMapping, $array);
 
         $data['crude_body'] = json_encode($caseDocument);
 
-        $data['response'] = $this->requestService->proxyHandler($data, [], $zaakSource);
+        $data['path']['{route}'] = ltrim($configuration['zaakDocumentPath'], '/');
+        $response = json_decode($this->requestService->proxyHandler($data, [], $zaakSource)->getContent(), true);
 
+        $data['response'] = $this->createResponse($this->mappingService->mapping($outMapping, $response), 200);
         return $data;
 
     }//end translateZdsToZgwDocument()
@@ -171,6 +172,8 @@ class ZdsToZgwService
     {
         $mappingOut = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
         $data['response'] = $this->createResponse($this->mappingService->mapping($mappingOut,$data['body']), 200);
+
+
 
         return $data;
     }

@@ -1,0 +1,13 @@
+{
+  "title": "ZdsToZgwZaakDocument",
+  "$id": "https://zds.nl/mapping/zds.ZdsToZgwZaakDocument.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.18",
+  "passTrough": false,
+  "mapping": {
+    "zaak": "_zaak.url",
+    "informatieobject": "_document.url"
+  },
+  "cast": {
+  }
+}

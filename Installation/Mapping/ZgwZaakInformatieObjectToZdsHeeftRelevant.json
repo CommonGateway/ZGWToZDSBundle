@@ -1,0 +1,13 @@
+{
+  "title": "ZgwZaakToZdsResponseItemInitiator",
+  "$id": "https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "_document": "informatieobject",
+    "@StUF:entiteittype": "ZAKEDC",
+    "ZKN:gerelateerde.@StUF:entiteittype": "EDC"
+  }
+}
+a
