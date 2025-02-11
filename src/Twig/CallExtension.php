@@ -7,6 +7,8 @@ use Twig\TwigFunction;
 
 class CallExtension extends AbstractExtension
 {
+
+
     public function getFunctions()
     {
         return [
@@ -15,5 +17,8 @@ class CallExtension extends AbstractExtension
             new TwigFunction('arrayValues', [CallRuntime::class, 'arrayValues']),
             new TwigFunction('getObject', [CallRuntime::class, 'getObject']),
         ];
-    }
-}
+
+    }//end getFunctions()
+
+
+}//end class
