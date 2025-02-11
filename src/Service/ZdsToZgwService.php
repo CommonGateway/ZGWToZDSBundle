@@ -30,7 +30,9 @@ class ZdsToZgwService
     private function getObjects(string $schema): array
     {
         return $this->cacheService->searchObjectsNew([], [$schema])['results'];
+
     }//end getObjects()
+
 
     /**
      * Creates a response based on content.
@@ -42,10 +44,9 @@ class ZdsToZgwService
      */
     public function createResponse(array $content, int $status): Response
     {
-//        $this->logger->debug('Creating XML response');
+        // $this->logger->debug('Creating XML response');
         $xmlEncoder    = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
         $contentString = $xmlEncoder->encode($content, 'xml', ['xml_encoding' => 'utf-8', 'remove_empty_tags' => true]);
-
 
         return new Response($contentString, $status);
 
@@ -61,16 +62,18 @@ class ZdsToZgwService
         $newDoc->appendChild($this->copyWithoutNamespace($doc->documentElement, $newDoc));
 
         return $newDoc->saveXML();
-    }
 
-// Helper function to copy elements without namespaces
+    }//end removeNamespaces()
+
+
+    // Helper function to copy elements without namespaces
     private function copyWithoutNamespace(\DOMNode $node, \DOMDocument $newDoc)
     {
         // Create a new element without namespace
         $newNode = $newDoc->createElement($node->localName);
 
         // Copy attributes
-        foreach ($node->attributes ?? [] as $attr) {
+        foreach (($node->attributes ?? []) as $attr) {
             $newNode->setAttribute($attr->name, $attr->value);
         }
 
@@ -78,13 +81,14 @@ class ZdsToZgwService
         foreach ($node->childNodes as $child) {
             if ($child instanceof \DOMText) {
                 $newNode->appendChild($newDoc->createTextNode($child->nodeValue));
-            } elseif ($child instanceof \DOMElement) {
+            } else if ($child instanceof \DOMElement) {
                 $newNode->appendChild($this->copyWithoutNamespace($child, $newDoc));
             }
         }
 
         return $newNode;
-    }
+
+    }//end copyWithoutNamespace()
 
 
     public function translateZdsToZgwZaak(array $data, array $configuration): array
@@ -92,9 +96,9 @@ class ZdsToZgwService
 
         $cleanXml = $this->removeNamespaces($data['crude_body']);
 
-        $mapping = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
+        $mapping    = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
         $outMapping = $this->resourceService->getMapping($configuration['outMapping'], 'common-gateway/zgw-to-zds-bundle');
-        $source  = $this->resourceService->getSource($configuration['source'], 'common-gateway/zgw-to-zds-bundle');
+        $source     = $this->resourceService->getSource($configuration['source'], 'common-gateway/zgw-to-zds-bundle');
 
         // Decode using XmlEncoder
         $encoder = new XmlEncoder();
@@ -142,7 +146,6 @@ class ZdsToZgwService
 
         $array['_documenttypen'] = $this->getObjects($configuration['documenttypeSchema']);
 
-
         $document = $this->mappingService->mapping($mapping, $array);
 
 
@@ -168,14 +171,17 @@ class ZdsToZgwService
 
     }//end translateZdsToZgwDocument()
 
+
     public function identificatieActionHandler(array $data, array $configuration): array
     {
-        $mappingOut = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
-        $data['response'] = $this->createResponse($this->mappingService->mapping($mappingOut,$data['body']), 200);
+        $mappingOut       = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
+        $data['response'] = $this->createResponse($this->mappingService->mapping($mappingOut, $data['body']), 200);
 
 
 
         return $data;
-    }
+
+    }//end identificatieActionHandler()
+
 
 }//end class
