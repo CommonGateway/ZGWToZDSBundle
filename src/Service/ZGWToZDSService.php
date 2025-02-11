@@ -344,8 +344,6 @@ class ZGWToZDSService
     {
         $response     = $data['response'];
         $responseBody = json_decode($response->getContent(), true);
-        
-        
 
         $encoder      = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
         $responseBody = $encoder->encode($responseBody, 'xml');

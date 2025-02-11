@@ -16,6 +16,7 @@ use CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService;
 class ZdsToZgwZaakHandler implements ActionHandlerInterface
 {
 
+
     /**
      * The constructor
      *
@@ -23,6 +24,7 @@ class ZdsToZgwZaakHandler implements ActionHandlerInterface
      */
     public function __construct(private readonly ZdsToZgwService $service)
     {
+
     }//end __construct()
 
 
@@ -40,48 +42,48 @@ class ZdsToZgwZaakHandler implements ActionHandlerInterface
             'description' => 'ZDS to ZGW Zaak',
             'required'    => [],
             'properties'  => [
-                'mapping' => [
+                'mapping'          => [
                     'type'        => 'string',
                     'description' => 'The default mapping of a ZDS zaak to ZGW rol',
                     'example'     => 'https://zds.nl/mapping/zds.ZdsToZgwRol.mapping.json',
                     'required'    => true,
                 ],
-                'source'   => [
+                'source'           => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire to',
                     'example'     => 'https://zds.vng.nl/endpoints/zgw.zrc.source.json',
                     'required'    => true,
                 ],
-                'zaaktypeSchema' => [
+                'zaaktypeSchema'   => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW Zaaktypes',
                     'example'     => 'https://vng.opencatalogi.nl/schemas/ztc.zaakType.schema.json',
-                    'required'    => true
+                    'required'    => true,
                 ],
                 'eigenschapSchema' => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW eigenschappen',
                     'example'     => 'https://vng.opencatalogi.nl/schemas/ztc.eigenschap.schema.json',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                'roltypeSchema' => [
+                'roltypeSchema'    => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW eigenschappen',
                     'example'     => 'https://vng.opencatalogi.nl/schemas/ztc.rolType.schema.json',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                'outMapping' => [
+                'outMapping'       => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW eigenschappen',
                     'example'     => 'https://zds.nl/mapping/RolToBv03.mapping.json',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                'path'   => [
+                'path'             => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire the zaakinformatieobject to',
                     'example'     => '/rollen',
                     'required'    => true,
-                ]
+                ],
             ],
         ];
 

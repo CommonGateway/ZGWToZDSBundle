@@ -16,6 +16,7 @@ use CommonGateway\ZGWToZDSBundle\Service\ZGWToZDSService;
 class ZdsToZgwDocumentHandler implements ActionHandlerInterface
 {
 
+
     /**
      * The constructor
      *
@@ -23,6 +24,7 @@ class ZdsToZgwDocumentHandler implements ActionHandlerInterface
      */
     public function __construct(private readonly ZdsToZgwService $service)
     {
+
     }//end __construct()
 
 
@@ -40,13 +42,13 @@ class ZdsToZgwDocumentHandler implements ActionHandlerInterface
             'description' => 'ZDS to ZGW Zaak',
             'required'    => [],
             'properties'  => [
-                'mapping' => [
+                'mapping'                     => [
                     'type'        => 'string',
                     'description' => 'The default mapping of a ZDS Document to ZGW Document',
                     'example'     => 'https://zds.nl/mapping/zds.ZdsToZgwDocument.mapping.json',
                     'required'    => true,
                 ],
-                'source'   => [
+                'source'                      => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire to',
                     'example'     => 'https://zds.vng.nl/endpoints/zgw.drc.source.json',
@@ -58,43 +60,43 @@ class ZdsToZgwDocumentHandler implements ActionHandlerInterface
                     'example'     => 'https://zds.nl/mapping/zds.ZdsToZgwZaakDocument.mapping.json',
                     'required'    => true,
                 ],
-                'zaakSource'   => [
+                'zaakSource'                  => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire the zaakinformatieobject to',
                     'example'     => 'https://zds.vng.nl/endpoints/zgw.zrc.source.json',
                     'required'    => true,
                 ],
-                'documenttypeSchema' => [
+                'documenttypeSchema'          => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW Zaaktypes',
                     'example'     => 'https://vng.opencatalogi.nl/schemas/ztc.zaakType.schema.json',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                'outMapping' => [
+                'outMapping'                  => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW eigenschappen',
                     'example'     => 'https://zds.nl/mapping/DocumentToBv03.mapping.json',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                'zaakPath'   => [
+                'zaakPath'                    => [
                     'type'        => 'string',
                     'description' => 'the default endpoint the action should fire the zaakinformatieobject to',
                     'example'     => '/zaken',
                     'required'    => true,
                 ],
-                'documentPath' => [
+                'documentPath'                => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW Zaaktypes',
                     'example'     => '/enkelvoudiginformatieobjecten',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                'zaakDocumentPath' => [
+                'zaakDocumentPath'            => [
                     'type'        => 'string',
                     'description' => 'the schema of the ZGW eigenschappen',
                     'example'     => '/zaakinformatieobjecten',
-                    'required'    => true
+                    'required'    => true,
                 ],
-                
+
             ],
         ];
 
