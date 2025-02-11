@@ -29,7 +29,7 @@
     "ZKN:isVan.ZKN:gerelateerde.ZKN:omschrijving": "Verhuizing doorgeven",
     "ZKN:isVan.ZKN:gerelateerde.ZKN:code": "VERDOOR",
     "ZKN:heeftAlsInitiator": "{% if rollen.0 is defined %}{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItemInitiator.mapping.json\", rollen.0)|json_encode }}{% else %}\"\"{% endif %}",
-    "ZKN:heeftRelevant": "{{ map('https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json', zaakinformatieobjecten, true) }}"
+    "ZKN:heeftRelevant": "{% if _giveDetails == true %}{% set uuids = zaakinformatieobjecten|column('informatieobject')|map(v => v|split('/')|last)|json_encode %}{% set json = {'uuid_in': uuids, 'expand': 'informatieobjecttype'} %}{% set _documents = call('https://zds.vng.nl/endpoints/zgw.drc.source.json', '/enkelvoudiginformatieobjecten/_zoek', 'POST', {'json': json }).results %}{% set zaakInformatieobjectenExpanded = zaakinformatieobjecten|map(zaakinformatieobject => zaakinformatieobject|merge({'_expand': {'informatieobject': _documents|filter(v => v.url == zaakinformatieobject.informatieobject)|first}})) %}{{ map('https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json', zaakInformatieobjectenExpanded, true) }}{% endif %}"
   },
   "cast": {
     "StUF:extraElementen.StUF:extraElement": "jsonToArray",

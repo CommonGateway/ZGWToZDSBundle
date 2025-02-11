@@ -5,9 +5,21 @@
   "version": "0.0.1",
   "passTrough": false,
   "mapping": {
-    "_document": "informatieobject",
     "@StUF:entiteittype": "ZAKEDC",
-    "ZKN:gerelateerde.@StUF:entiteittype": "EDC"
+    "ZKN:gerelateerde.@StUF:entiteittype": "EDC",
+    "ZKN:gerelateerde.ZKN:identificatie": "_expand.informatieobject.identificatie",
+    "ZKN:gerelateerde.ZKN:dct&#46;omschrijving": "_expand.informatieobject._expand.informatieobjecttype.omschrijving",
+    "ZKN:gerelateerde.ZKN:dct&#46;omschrijvingGeneriek": "_expand.informatieobject._expand.informatieobjecttype.omschrijvingGeneriek.informatieobjecttypeOmschrijvingGeneriek",
+    "ZKN:gerelateerde.ZKN:creatiedatum": "{{ _expand.informatieobject.creatiedatum|date('Ymd')}}",
+    "ZKN:gerelateerde.ZKN:ontvangstdatum": "{{ _expand.informatieobject.ontvangstdatum|date('Ymd')}}",
+    "ZKN:gerelateerde.ZKN:titel": "_expand.informatieobject.titel",
+    "ZKN:gerelateerde.ZKN:beschrijving": "_expand.informatieobject.beschrijving",
+    "ZKN:gerelateerde.ZKN:formaat": "_expand.informatieobject.formaat",
+    "ZKN:gerelateerde.ZKN:taal": "_expand.informatieobject.taal",
+    "ZKN:gerelateerde.ZKN:versie": "_expand.informatieobject.versie",
+    "ZKN:gerelateerde.ZKN:verzenddatum": "{{ _expand.informatieobject.verzenddatum|date('Ymd')}}",
+    "ZKN:gerelateerde.ZKN:auteur": "_expand.informatieobject.auteur",
+    "ZKN:gerelateerde.ZKN:link": "_expand.informatieobject.link",
+    "StUF:tijdstipRegistratie": "registratiedatum"
   }
 }
-a
