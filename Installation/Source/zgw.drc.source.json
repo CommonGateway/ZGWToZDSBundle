@@ -6,14 +6,11 @@
   "description": "ZGW DRC source for ZDS proxies",
   "location": "!ChangeMe!",
   "isEnabled" : false,
-  "headers": {
-    "accept" : "application/json",
-    "Accept-Crs": "EPSG:4326",
-    "Content-Crs": "EPSG:4326"
-  },
   "auth": "none",
   "configuration": {
-    "verify": false
+    "verify": false,
+    "accept" : "application/json",
+    "content-type": "application/json"
   },
   "endpointsConfig": {
   }

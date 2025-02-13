@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace CommonGateway\ZGWToZDSBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

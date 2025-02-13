@@ -1,8 +1,8 @@
 {
-  "title": "ZgwZaakToZdsResponseItemInitiator",
+  "title": "ZgwZaakInformatieobjectToZDSHeeftRelevant",
   "$id": "https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "passTrough": false,
   "mapping": {
     "@StUF:entiteittype": "ZAKEDC",
@@ -17,9 +17,14 @@
     "ZKN:gerelateerde.ZKN:formaat": "_expand.informatieobject.formaat",
     "ZKN:gerelateerde.ZKN:taal": "_expand.informatieobject.taal",
     "ZKN:gerelateerde.ZKN:versie": "_expand.informatieobject.versie",
+    "ZKN:gerelateerde.ZKN:status": "_expand.informatieobject.status",
     "ZKN:gerelateerde.ZKN:verzenddatum": "{{ _expand.informatieobject.verzenddatum|date('Ymd')}}",
+    "ZKN:gerelateerde.ZKN:vertrouwelijkAanduiding": "{{ _expand.informatieobject.vertrouwelijkheidaanduiding|upper }}",
     "ZKN:gerelateerde.ZKN:auteur": "_expand.informatieobject.auteur",
     "ZKN:gerelateerde.ZKN:link": "_expand.informatieobject.link",
     "StUF:tijdstipRegistratie": "registratiedatum"
+  },
+  "cast": {
+    "ZKN:gerelateerde.ZKN:dct&#46;omschrijvingGeneriek": "unsetIfValue==_expand.informatieobject._expand.informatieobjecttype.omschrijvingGeneriek.informatieobjecttypeOmschrijvingGeneriek"
   }
 }

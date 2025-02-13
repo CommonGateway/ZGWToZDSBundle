@@ -2,7 +2,7 @@
   "title": "ZgwZaakToZdsResponse",
   "$id": "https://zds.nl/mapping/zds.ZgwZaakToZdsResponse.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "passTrough": false,
   "mapping": {
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.StUF:berichtcode": "La01",
@@ -19,7 +19,7 @@
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:stuurgegevens.StUF:entiteittype": "ZAK",
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:parameters.StUF:mutatiesoort": "T",
     "SOAP-ENV:Body.ZKN:zakLa01.ZKN:parameters.StUF:indicatorOvername": "V",
-    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord.ZKN:object": "{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItem.mapping.json\", results, true)|json_encode }}",
+    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord.ZKN:object": "{% if results|length == 1 %}{% set results = results|map(item => item|merge({'_giveDetails': true})) %}{% else %}{% set results = results|map(item => item|merge({'_giveDetails': false})) %}{% endif %}{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItem.mapping.json\", results, true)|json_encode }}",
     "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
     "@xmlns:StUF": "http://www.egem.nl/StUF/StUF0301",
     "@xmlns:ZKN": "http://www.egem.nl/StUF/sector/zkn/0310",
