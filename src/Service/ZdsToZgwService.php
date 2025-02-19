@@ -27,6 +27,12 @@ class ZdsToZgwService
     }//end __construct()
 
 
+    /**
+     * Get all objects for schema.
+     *
+     * @param string $schema The schema to fetch objects for.
+     * @return array
+     */
     private function getObjects(string $schema): array
     {
         return $this->cacheService->searchObjectsNew([], [$schema])['results'];
@@ -53,6 +59,12 @@ class ZdsToZgwService
     }//end createResponse()
 
 
+    /**
+     * Cleans namespaces from XML
+     *
+     * @param $xml
+     * @return false|string
+     */
     private function removeNamespaces($xml)
     {
         $doc = new \DOMDocument();
@@ -65,8 +77,15 @@ class ZdsToZgwService
 
     }//end removeNamespaces()
 
-
-    // Helper function to copy elements without namespaces
+    /**
+     * Helper function to copy elements without namespaces
+     *
+     * @param \DOMNode $node The node to rebuild.
+     * @param DOMDocument $newDoc The new document.
+     *
+     * @return \DOMElement|false The updated node.
+     * @throws \DOMException
+     */
     private function copyWithoutNamespace(\DOMNode $node, \DOMDocument $newDoc)
     {
         // Create a new element without namespace
@@ -90,7 +109,14 @@ class ZdsToZgwService
 
     }//end copyWithoutNamespace()
 
-
+    /**
+     * Translates ZDS cases to ZGW cases
+     *
+     * @param array $data The incoming ZDS data
+     * @param array $configuration The configuration of the action.
+     *
+     * @return array The resulting ZGW case
+     */
     public function translateZdsToZgwZaak(array $data, array $configuration): array
     {
 
@@ -126,7 +152,13 @@ class ZdsToZgwService
 
     }//end translateZdsToZgwZaak()
 
-
+    /**
+     * Translates ZDS documents to ZGW documents
+     *
+     * @param array $data The incoming ZDS data
+     * @param array $configuration The configuration of the action.
+     * @return array
+     */
     public function translateZdsToZgwDocument(array $data, array $configuration): array
     {
         $cleanXml = $this->removeNamespaces($data['crude_body']);
@@ -169,6 +201,13 @@ class ZdsToZgwService
     }//end translateZdsToZgwDocument()
 
 
+    /**
+     * Create a response for incoming ZDS create identification messages.
+     *
+     * @param array $data The incoming ZDS data.
+     * @param array $configuration The configuration of the action.
+     * @return array
+     */
     public function identificatieActionHandler(array $data, array $configuration): array
     {
         $mappingOut       = $this->resourceService->getMapping($configuration['mapping'], 'common-gateway/zgw-to-zds-bundle');
