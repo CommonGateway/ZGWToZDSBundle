@@ -1,0 +1,21 @@
+{
+  "title": "ZaakDi02ToDu02",
+  "$id": "https://zds.nl/mapping/ZaakDi02ToDu02.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.2",
+  "passTrough": false,
+  "mapping": {
+    "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.@xmlns:StUF": "http://www.egem.nl/StUF/StUF0301",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.@xmlns:ZKN": "http://www.egem.nl/StUF/sector/zkn/0310",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:stuurgegevens.StUF:berichtcode": "Du02",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:stuurgegevens.StUF:zender.StUF:applicatie": "SOAP-ENV:Body.ns2:genereerZaakIdentificatie_Di02.ns2:stuurgegevens.ns1:ontvanger.ns1:applicatie",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:stuurgegevens.StUF:ontvanger.StUF:applicatie": "SOAP-ENV:Body.ns2:genereerZaakIdentificatie_Di02.ns2:stuurgegevens.ns1:zender.ns1:applicatie",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:stuurgegevens.StUF:referentienummer": "SOAP-ENV:Body.ns2:genereerZaakIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:stuurgegevens.StUF:tijdstipbericht": "SOAP-ENV:Body.ns2:genereerZaakIdentificatie_Di02.ns2:stuurgegevens.ns1:tijdstipbericht",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:stuurgegevens.StUF:crossRefnummmer": "SOAP-ENV:Body.ns2:genereerZaakIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:zaak.@StUF:functie": "entiteit",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:zaak.@StUF:entiteittype": "ZAK",
+    "SOAP-ENV:Body.ZKN:genereerZaakIdentificatie_Du02.ZKN:zaak.ZKN:identificatie": "SOAP-ENV:Body.ns2:genereerZaakIdentificatie_Di02.ns2:stuurgegevens.ns1:referentienummer"
+  }
+}

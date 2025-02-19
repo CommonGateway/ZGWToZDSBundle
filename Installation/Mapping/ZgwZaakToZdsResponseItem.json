@@ -28,7 +28,8 @@
     "ZKN:isVan.ZKN:gerelateerde.@StUF:verwerkingssoort": "T",
     "ZKN:isVan.ZKN:gerelateerde.ZKN:omschrijving": "Verhuizing doorgeven",
     "ZKN:isVan.ZKN:gerelateerde.ZKN:code": "VERDOOR",
-    "ZKN:heeftAlsInitiator": "{% if rollen.0 is defined %}{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItemInitiator.mapping.json\", rollen.0)|json_encode }}{% else %}\"\"{% endif %}"
+    "ZKN:heeftAlsInitiator": "{% if rollen.0 is defined %}{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItemInitiator.mapping.json\", rollen.0)|json_encode }}{% else %}\"\"{% endif %}",
+    "ZKN:heeftRelevant": "{{ map('https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json', zaakinformatieobjecten, true) }}"
   },
   "cast": {
     "StUF:extraElementen.StUF:extraElement": "jsonToArray",
