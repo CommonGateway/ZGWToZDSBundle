@@ -2,7 +2,7 @@
   "title": "ZgwZaakToZdsResponseItem",
   "$id": "https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItem.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "passTrough": false,
   "mapping": {
     "@StUF:entiteittype": "ZAK",
@@ -26,13 +26,21 @@
     "ZKN:isVan.ZKN:gerelateerde.@StUF:entiteittype": "ZKT",
     "ZKN:isVan.ZKN:gerelateerde.@StUF:sleutelOntvangend": "5700000000000000000000000000000000000001",
     "ZKN:isVan.ZKN:gerelateerde.@StUF:verwerkingssoort": "T",
-    "ZKN:isVan.ZKN:gerelateerde.ZKN:omschrijving": "Verhuizing doorgeven",
-    "ZKN:isVan.ZKN:gerelateerde.ZKN:code": "VERDOOR",
+    "ZKN:isVan.ZKN:gerelateerde.ZKN:omschrijving": "_expand.zaaktype.omschrijving",
+    "ZKN:isVan.ZKN:gerelateerde.ZKN:code": "_expand.zaaktype.identificatie",
     "ZKN:heeftAlsInitiator": "{% if rollen.0 is defined %}{{ map(\"https://zds.nl/mapping/zds.ZgwZaakToZdsResponseItemInitiator.mapping.json\", rollen.0)|json_encode }}{% else %}\"\"{% endif %}",
-    "ZKN:heeftRelevant": "{{ map('https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json', zaakinformatieobjecten, true) }}"
+    "ZKN:heeft.@StUF:entiteittype": "ZAKSTT",
+    "ZKN:heeft.ZKN:gerelateerde.@StUF:entiteittype": "STT",
+    "ZKN:heeft.ZKN:gerelateerde.ZKN:volgnummer": "_expand.status._expand.statustype.volgnummer",
+    "ZKN:heeft.ZKN:gerelateerde.ZKN:omschrijving": "_expand.status._expand.statustype.omschrijving",
+    "ZKN:heeft.ZKN:gerelateerde.ZKN:omschrijvingGeneriek": "_expand.status._expand.statustype.omschrijvingGeneriek",
+    "ZKN:heeft.ZKN:toelichting": "_expand.status.statustoelichting",
+    "ZKN:heeft.ZKN:datumStatusGezet": "{{ _expand.status.datumStatusGezet|date('Ymdhis') }}",
+    "ZKN:heeftRelevant": "{% if _giveDetails == true %}{% set uuids = _expand.zaakinformatieobjecten|column('informatieobject')|map(v => v|split('/')|last) %}{% set json = {'uuid__in': uuids, 'expand': 'informatieobjecttype'} %}{% set _documents = call('https://zds.vng.nl/endpoints/zgw.drc.source.json', '/enkelvoudiginformatieobjecten/_zoek', 'POST', {'json': json }).results %}{% set zaakInformatieobjectenExpanded = _expand.zaakinformatieobjecten|map(zaakinformatieobject => zaakinformatieobject|merge({'_expand': {'informatieobject': _documents|filter(v => v.url == zaakinformatieobject.informatieobject)|first}})) %}{{ map('https://zds.nl/mapping/zds.ZgwZaakInformatieObjectToZdsHeeftRelevant.mapping.json', zaakInformatieobjectenExpanded, true)|json_encode }}{% endif %}"
   },
   "cast": {
     "StUF:extraElementen.StUF:extraElement": "jsonToArray",
-    "ZKN:heeftAlsInitiator": ["jsonToArray", "unsetIfValue=="]
+    "ZKN:heeftAlsInitiator": ["jsonToArray", "unsetIfValue=="],
+    "ZKN:heeftRelevant": ["jsonToArray", "unsetIfValue=="]
   }
 }

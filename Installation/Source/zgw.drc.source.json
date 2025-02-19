@@ -1,0 +1,17 @@
+{
+  "title": "ZGW DRC API",
+  "$id": "https://zds.vng.nl/endpoints/zgw.drc.source.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
+  "version": "0.0.1",
+  "description": "ZGW DRC source for ZDS proxies",
+  "location": "!ChangeMe!",
+  "isEnabled" : false,
+  "auth": "none",
+  "configuration": {
+    "verify": false,
+    "accept" : "application/json",
+    "content-type": "application/json"
+  },
+  "endpointsConfig": {
+  }
+}
