@@ -30,7 +30,7 @@ class ZdsToZgwService
     /**
      * Get all objects for schema.
      *
-     * @param string $schema The schema to fetch objects for.
+     * @param  string $schema The schema to fetch objects for.
      * @return array
      */
     private function getObjects(string $schema): array
@@ -62,7 +62,7 @@ class ZdsToZgwService
     /**
      * Cleans namespaces from XML
      *
-     * @param $xml
+     * @param  $xml
      * @return false|string
      */
     private function removeNamespaces($xml)
@@ -77,10 +77,11 @@ class ZdsToZgwService
 
     }//end removeNamespaces()
 
+
     /**
      * Helper function to copy elements without namespaces
      *
-     * @param \DOMNode $node The node to rebuild.
+     * @param \DOMNode    $node   The node to rebuild.
      * @param DOMDocument $newDoc The new document.
      *
      * @return \DOMElement|false The updated node.
@@ -109,10 +110,11 @@ class ZdsToZgwService
 
     }//end copyWithoutNamespace()
 
+
     /**
      * Translates ZDS cases to ZGW cases
      *
-     * @param array $data The incoming ZDS data
+     * @param array $data          The incoming ZDS data
      * @param array $configuration The configuration of the action.
      *
      * @return array The resulting ZGW case
@@ -152,11 +154,12 @@ class ZdsToZgwService
 
     }//end translateZdsToZgwZaak()
 
+
     /**
      * Translates ZDS documents to ZGW documents
      *
-     * @param array $data The incoming ZDS data
-     * @param array $configuration The configuration of the action.
+     * @param  array $data          The incoming ZDS data
+     * @param  array $configuration The configuration of the action.
      * @return array
      */
     public function translateZdsToZgwDocument(array $data, array $configuration): array
@@ -204,8 +207,8 @@ class ZdsToZgwService
     /**
      * Create a response for incoming ZDS create identification messages.
      *
-     * @param array $data The incoming ZDS data.
-     * @param array $configuration The configuration of the action.
+     * @param  array $data          The incoming ZDS data.
+     * @param  array $configuration The configuration of the action.
      * @return array
      */
     public function identificatieActionHandler(array $data, array $configuration): array
