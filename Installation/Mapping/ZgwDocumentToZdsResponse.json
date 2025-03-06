@@ -2,7 +2,7 @@
   "title": "ZgwDocumentToZdsResponse",
   "$id": "https://zds.nl/mapping/zds.ZgwDocumentToZdsResponse.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "passTrough": false,
   "mapping": {
     "SOAP-ENV:Body.ZKN:edcLa01.ZKN:stuurgegevens.StUF:berichtcode": "La01",

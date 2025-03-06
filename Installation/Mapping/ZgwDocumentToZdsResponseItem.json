@@ -1,8 +1,8 @@
 {
-  "title": "ZgwZaakToZdsResponseItem",
+  "title": "ZgwDocumentToZdsResponseItem",
   "$id": "https://zds.nl/mapping/zds.ZgwDocumentToZdsResponseItem.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.8",
+  "version": "0.0.1",
   "passTrough": false,
   "mapping": {
     "@StUF:entiteittype": "EDC",
@@ -21,7 +21,7 @@
     "ZKN:verzenddatum": "{% if verzenddatum|default %}{{ verzenddatum|date('Ymd') }}{% endif %}",
     "ZKN:auteur": "auteur",
     "ZKN:link": "link",
-    "ZKN:inhoud.#": "link",
+    "ZKN:inhoud.#": "{{ call('https://zds.vng.nl/endpoints/zgw.drc.source.json', link, 'GET', {'headers': {'Accept': '*/*'}}, false)|b64enc }}",
     "ZKN:inhoud.@StUF:bestandsnaam": "bestandsnaam"
   },
   "cast": {

@@ -11,13 +11,16 @@
     "ZKN:identificatie": "identificatie",
     "ZKN:omschrijving": "omschrijving",
     "ZKN:toelichting": "toelichting",
+    "ZKN:resultaat.ZKN:omschrijving": "_expand.resultaat._expand.resultaattype.omschrijving",
+    "ZKN:resultaat.ZKN:toelichting": "_expand.resultaat.toelichting",
     "ZKN:startdatum": "startdatum",
     "ZKN:registratiedatum": "registratiedatum",
     "ZKN:publicatiedatum": "publicatiedatum",
-    "ZKN:einddatumGepland": "einddatumGepland",
     "ZKN:uiterlijkeEinddatum": "uiterlijkeEinddatumAfdoening",
+    "ZKN:einddatum": "{{ einddatum|date(Ymd) }}",
     "ZKN:betalingsIndicatie": "betalingsindicatie",
     "ZKN:laatsteBetaaldatum": "laatsteBetaaldatum",
+    "ZKN:einddatumGepland": "einddatumGepland",
     "ZKN:zaakniveau": "1",
     "ZKN:deelzakenIndicatie": "N",
     "StUF:extraElementen.StUF:extraElement": "[{% for eigenschap in eigenschappen %}{% if not loop.first %},{% endif %}{{ map('https://zds.nl/mapping/zds.ZgwEigenschapToZds.mapping.json', eigenschap)|json_encode }}{% endfor %}]",
@@ -41,6 +44,9 @@
   "cast": {
     "StUF:extraElementen.StUF:extraElement": "jsonToArray",
     "ZKN:heeftAlsInitiator": ["jsonToArray", "unsetIfValue=="],
-    "ZKN:heeftRelevant": ["jsonToArray", "unsetIfValue=="]
+    "ZKN:heeftRelevant": ["jsonToArray", "unsetIfValue=="],
+    "ZKN:einddatum": "unsetIfValue==",
+    "ZKN:resultaat.ZKN:omschrijving": "unsetIfValue==_expand.resultaat._expand.resultaattype.omschrijving",
+    "ZKN:resultaat.ZKN:toelichting": "unsetIfValue==_expand.resultaat.toelichting"
   }
 }
