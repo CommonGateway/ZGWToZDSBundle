@@ -9,13 +9,16 @@ use Twig\TwigFunction;
 class CallExtension extends AbstractExtension
 {
 
+
     public function getFilters(): array
     {
         return [
             new TwigFilter('b64enc', [CallRuntime::class, 'b64enc']),
             new TwigFilter('b64dec', [CallRuntime::class, 'b64dec']),
         ];
-    }
+
+    }//end getFilters()
+
 
     public function getFunctions(): array
     {
