@@ -31,7 +31,7 @@ class CallRuntime implements RuntimeExtensionInterface
     {
         $source = $this->resourceService->getSource($sourceId, 'common-gateway/zgw-to-zds-bundle');
 
-        if(str_contains($endpoint, $source->getLocation()) === true) {
+        if (str_contains($endpoint, $source->getLocation()) === true) {
             $endpoint = substr($endpoint, strlen($source->getLocation()));
         }
 
