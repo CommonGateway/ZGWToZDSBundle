@@ -139,7 +139,7 @@ class ZdsToZgwService
         $zaak = $this->mappingService->mapping($mapping, $array);
 
         if (isset($zaak['_headers']) === true) {
-            $data['headers'] = array_merge($zaak['_headers'], $data['headers']);
+            $data['headers'] = array_merge($data['headers'], $zaak['_headers']);
             unset($zaak['_headers']);
         }
 
