@@ -27,14 +27,37 @@ class CallRuntime implements RuntimeExtensionInterface
      *
      * @return array The dot aray.
      */
-    public function call(string $sourceId, string $endpoint, string $method='GET', array $configuration=[]): array
+    public function call(string $sourceId, string $endpoint, string $method='GET', array $configuration=[], bool $decode=true): array|string
     {
         $source = $this->resourceService->getSource($sourceId, 'common-gateway/zgw-to-zds-bundle');
 
+        if (str_contains($endpoint, $source->getLocation()) === true) {
+            $endpoint = substr($endpoint, strlen($source->getLocation()));
+        }
+
         $response = $this->callService->call($source, $endpoint, $method, $configuration);
+
+        if ($decode === false) {
+            return $response->getBody()->getContents();
+        }
+
         return $this->callService->decodeResponse($source, $response);
 
     }//end call()
+
+
+    public function b64enc(string $input): string
+    {
+        return base64_encode($input);
+
+    }//end b64enc()
+
+
+    public function b64dec(string $input): string
+    {
+        return base64_decode($input);
+
+    }//end b64dec()
 
 
 }//end class

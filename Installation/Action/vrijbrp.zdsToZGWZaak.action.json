@@ -1,0 +1,23 @@
+{
+  "title": "ZDS zakLv01 to ZGW ZRC",
+  "$id": "https://vrijbrp.nl/action/vrijbrp.zdsToZRC.action.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
+  "version": "0.0.1",
+  "listens": [
+    "zds.inbound"
+  ],
+  "conditions": {
+        "==": [
+          {
+            "var": "body.SOAP-ENV:Body.ns2:zakLv01.ns2:stuurgegevens.ns1:entiteittype"
+          },
+          "ZAK"
+        ]
+  },
+  "class": "CommonGateway\\CoreBundle\\ActionHandler\\RequestProxyHandler",
+  "configuration": {
+    "source": "https://zds.vng.nl/endpoints/zgw.zrc.source.json"
+  },
+  "isLockable": false,
+  "isEnabled": true
+}

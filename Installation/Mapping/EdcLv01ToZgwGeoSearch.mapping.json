@@ -1,0 +1,16 @@
+{
+  "$id": "https://zds.vng.nl/mappings/zdsEdcLv01ToZGWGeoSearch.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "title": "ZDS EDCLv01 to ZGW GeoSearch",
+  "description": "",
+  "mapping": {
+    "identificatie": "SOAP-ENV:Body.ns2:edcLv01.ns2:gelijk.ns2:identificatie",
+    "expand": "informatieobjecttype"
+  },
+  "unset": [],
+  "cast": {
+    "identificatie": "unsetIfValue==SOAP-ENV:Body.ns2:edcLv01.ns2:gelijk.ns2:identificatie"
+  },
+  "passTrough": false
+}

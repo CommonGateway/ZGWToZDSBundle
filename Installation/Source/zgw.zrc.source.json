@@ -2,7 +2,7 @@
   "title": "ZGW ZRC API",
   "$id": "https://zds.vng.nl/endpoints/zgw.zrc.source.json",
   "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ZGW ZRC source for ZDS proxies",
   "location": "!ChangeMe!",
   "isEnabled" : false,
@@ -16,7 +16,7 @@
     "verify": false
   },
   "endpointsConfig": {
-    "/zaken/_zoek": {
+    "global": {
       "out": {
         "body": {
           "mapping": "https://zds.vng.nl/mappings/zdsLv01ToZGWGeoSearch.mapping.json"
