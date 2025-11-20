@@ -2,7 +2,7 @@
   "title": "ZGW DRC API",
   "$id": "https://zds.vng.nl/endpoints/zgw.drc.source.json",
   "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ZGW DRC source for ZDS proxies",
   "location": "!ChangeMe!",
   "isEnabled" : false,
@@ -11,19 +11,5 @@
     "verify": false,
     "accept" : "application/json",
     "content-type": "application/json"
-  },
-  "endpointsConfig": {
-    "/enkelvoudiginformatieobjecten/_zoek": {
-      "out": {
-        "body": {
-          "mapping": "https://zds.vng.nl/mappings/zdsEdcLv01ToZGWGeoSearch.mapping.json"
-        }
-      },
-      "in": {
-        "body": {
-          "mapping": "https://zds.nl/mapping/zds.ZgwDocuentToZdsResponse.mapping.json"
-        }
-      }
-    }
   }
 }

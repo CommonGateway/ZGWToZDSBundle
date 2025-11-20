@@ -1,0 +1,29 @@
+{
+  "title": "ZGW DRC API ZOEKEN",
+  "$id": "https://zds.vng.nl/endpoints/zgw.drc-search.source.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
+  "version": "0.0.1",
+  "description": "ZGW DRC source for searching ZDS proxies",
+  "location": "https://lab.api.mijniconnect.nl/iconnect/apizgw/drc/ps/v1/enkelvoudiginformatieobjecten/_zoek",
+  "isEnabled" : false,
+  "auth": "none",
+  "configuration": {
+    "verify": false,
+    "accept" : "application/json",
+    "content-type": "application/json",
+  },
+  "endpointsConfig": {
+    "global": {
+      "out": {
+        "body": {
+          "mapping": "https://zds.vng.nl/mappings/zdsEdcLv01ToZGWGeoSearch.mapping.json"
+        }
+      },
+      "in": {
+        "body": {
+          "mapping": "https://zds.nl/mapping/zds.ZgwDocumentToZdsResponse.mapping.json"
+        }
+      }
+    }
+  }
+}

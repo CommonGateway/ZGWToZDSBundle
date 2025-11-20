@@ -1,0 +1,23 @@
+{
+  "title": "ZDS EdcLv01 to ZGW DRC",
+  "$id": "https://vrijbrp.nl/action/vrijbrp.zdsToDRC.action.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
+  "version": "0.0.1",
+  "listens": [
+    "zds.inbound"
+  ],
+  "conditions": {
+        "==": [
+          {
+            "var": "body.SOAP-ENV:Body.ns2:edcLv01.ns2:stuurgegevens.ns1:entiteittype"
+          },
+          "EDC"
+        ]
+  },
+  "class": "CommonGateway\\CoreBundle\\ActionHandler\\RequestProxyHandler",
+  "configuration": {
+    "source": "https://zds.vng.nl/endpoints/zgw.drc-search.source.json"
+  },
+  "isLockable": false,
+  "isEnabled": true
+}
