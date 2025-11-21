@@ -4,7 +4,7 @@
   "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
   "version": "0.0.1",
   "description": "ZGW DRC source for searching ZDS proxies",
-  "location": "https://lab.api.mijniconnect.nl/iconnect/apizgw/drc/ps/v1/enkelvoudiginformatieobjecten/_zoek",
+  "location": "!ChangeMe!/enkelvoudiginformatieobjecten/_zoek",
   "isEnabled" : false,
   "auth": "none",
   "configuration": {
