@@ -186,7 +186,7 @@ class ZdsToZgwService
 
         unset($data['headers']['content-length'], $data['headers']['Content-Length'], $data['headers']['Content-Type'], $data['headers']['Accept']);
         $data['headers']['content-type'] = 'application/json';
-        $data['headers']['accept'] = 'application/json';
+        $data['headers']['accept']       = 'application/json';
 
         $data['accept'] = 'json';
 
