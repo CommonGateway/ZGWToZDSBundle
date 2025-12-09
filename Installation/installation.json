@@ -6,6 +6,7 @@
         "name": "ZDS Request Endpoint",
         "reference": "https://zds.vng.nl/endpoints/zgw.zrc.source.json",
         "path": "stuf/zds",
+        "defaultContentType": "text/xml; charset=utf-8",
         "methods": [
           "POST"
         ],

@@ -2,7 +2,7 @@
   "title": "ZgwDocumentToZdsResponse",
   "$id": "https://zds.nl/mapping/zds.ZgwDocumentToZdsResponse.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "passTrough": false,
   "mapping": {
     "SOAP-ENV:Body.ZKN:edcLa01.ZKN:stuurgegevens.StUF:berichtcode": "La01",
@@ -27,6 +27,6 @@
     "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
   },
   "cast": {
-    "SOAP-ENV:Body.ZKN:zakLa01.ZKN:antwoord.ZKN:object": ["jsonToArray"]
+    "SOAP-ENV:Body.ZKN:edcLa01.ZKN:antwoord.ZKN:object": ["jsonToArray"]
   }
 }

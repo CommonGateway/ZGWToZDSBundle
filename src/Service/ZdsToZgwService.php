@@ -181,19 +181,24 @@ class ZdsToZgwService
 
         $document = $this->mappingService->mapping($mapping, $array);
 
-        $data['crude_body']      = json_encode($document);
+        $data['crude_body']      = json_encode($document, JSON_UNESCAPED_SLASHES);
         $data['path']['{route}'] = ltrim($configuration['documentPath'], '/');
 
-        $response = $this->requestService->proxyHandler($data, [], $source, $data['endpoint']->getProxyOverrulesAuthentication());
+        unset($data['headers']['content-length'], $data['headers']['Content-Length'], $data['headers']['Content-Type'], $data['headers']['Accept']);
+        $data['headers']['content-type'] = 'application/json';
+        $data['headers']['accept'] = 'application/json';
 
+        $data['accept'] = 'json';
+
+        $response = $this->requestService->proxyHandler($data, [], $source, $data['endpoint']->getProxyOverrulesAuthentication());
         $document = json_decode($response->getContent(), true);
 
         $array['_document'] = $document;
-        $array['_zaak']     = $this->callService->decodeResponse($zaakSource, $this->callService->call($zaakSource, '/'.ltrim($configuration['zaakPath'], '/'), 'GET', ['query' => ['identificatie' => $array['Body']['edcLk01']['object']['isRelevantVoor']['gerelateerde']['identificatie']]]))['results'][0];
+        $array['_zaak']     = $this->callService->decodeResponse($zaakSource, $this->callService->call($zaakSource, '/'.ltrim($configuration['zaakPath'], '/'), 'POST', ['json' => ['identificatie' => $array['Body']['edcLk01']['object']['isRelevantVoor']['gerelateerde']['identificatie']]]))['results'][0];
 
         $caseDocument = $this->mappingService->mapping($zaakInfoObjectMapping, $array);
 
-        $data['crude_body'] = json_encode($caseDocument);
+        $data['crude_body'] = json_encode($caseDocument, JSON_UNESCAPED_SLASHES);
 
         $data['path']['{route}'] = ltrim($configuration['zaakDocumentPath'], '/');
         $response                = json_decode($this->requestService->proxyHandler($data, [], $zaakSource)->getContent(), true);

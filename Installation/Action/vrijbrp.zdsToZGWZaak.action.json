@@ -2,7 +2,7 @@
   "title": "ZDS zakLv01 to ZGW ZRC",
   "$id": "https://vrijbrp.nl/action/vrijbrp.zdsToZRC.action.json",
   "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "listens": [
     "zds.inbound"
   ],
@@ -16,7 +16,7 @@
   },
   "class": "CommonGateway\\CoreBundle\\ActionHandler\\RequestProxyHandler",
   "configuration": {
-    "source": "https://zds.vng.nl/endpoints/zgw.zrc.source.json"
+    "source": "https://zds.vng.nl/endpoints/zgw.zrc-zoeken.source.json"
   },
   "isLockable": false,
   "isEnabled": true

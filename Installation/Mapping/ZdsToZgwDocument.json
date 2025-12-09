@@ -1,13 +1,13 @@
 {
-  "title": "ZdsToZgwRol",
+  "title": "ZdsToZgwDocument",
   "$id": "https://zds.nl/mapping/zds.ZdsToZgwDocument.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "passTrough": false,
   "mapping": {
     "identificatie": "{% if Body.edcLk01.object.identificatie is iterable %}{{ Body.edcLk01.object.identificatie['#'] }}{% else %}{{ Body.edcLk01.object.identificatie }}{% endif %}",
     "bronorganisatie": "999990674",
-    "creatiedatum": "{% if Body.edcLk01.object.creatiedatum is iterable %}{{ Body.edcLk01.object.creatiedatum['#'] }}{% else %}{{ Body.edcLk01.object.creatiedatum }}{% endif %}",
+    "creatiedatum": "{% if Body.edcLk01.object.creatiedatum is iterable %}{{ Body.edcLk01.object.creatiedatum['#']|date('Y-m-d') }}{% else %}{{ Body.edcLk01.object.creatiedatum|date('Y-m-d') }}{% endif %}",
     "titel": "{% if Body.edcLk01.object.titel is iterable %}{{ Body.edcLk01.object.titel['#'] }}{% else %}{{ Body.edcLk01.object.titel }}{% endif %}",
     "beschrijving": "{% if Body.edcLk01.object.beschrijving is iterable %}{{ Body.edcLk01.object.beschrijving['#'] }}{% else %}{{ Body.edcLk01.object.beschrijving }}{% endif %}",
     "vertrouwelijkheidaanduiding": "zaakvertrouwelijk",
@@ -17,7 +17,7 @@
     "taal": "{% if Body.edcLk01.object.taal is iterable %}{{ Body.edcLk01.object.taal['#'] }}{% else %}{{ Body.edcLk01.object.taal }}{% endif %}",
     "bestandsnaam": "Body.edcLk01.object.inhoud.@bestandsnaam",
     "inhoud": "Body.edcLk01.object.inhoud.#",
-    "documenttype": "{% set filteredDocumenttypen = _documenttypen|filter(v => v.omschrijving == Body.edcLk01.object['dct&#46;omschrijving'])|filter(v => v.beginGeldigheid < 'now'|date)|filter(v => v.eindeGeldigheid is null or v.eindeGeldigheid|date > 'now'|date)%}{{ filteredDocumenttypen|column('url')|first }}"
+    "informatieobjecttype": "{{ 'https://lab.api.mijniconnect.nl/iconnect/apizgw/ztc/ps/v1/informatieobjecttypen/'~Body.edcLk01.object['dct&#46;omschrijving'] }}"
   },
   "cast": {
 
